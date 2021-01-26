@@ -20,9 +20,9 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
 
 
-      # $ sudo docker exec -it usersRestAPI01 sh
+      # $ sudo docker exec -it users sh
     # python3 manage.py makemigrations
     # python3 manage.py migrate
-    # python3 manage.py createsuperuser -> yomogan/yomogan@gmail.com/drf-react-redux
+    # python3 manage.py createsuperuser -> admin/admin@gmail.com/123456789
     # - Type `exit` to leave the sh session
 
