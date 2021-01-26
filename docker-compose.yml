@@ -2,14 +2,14 @@ version: '3.3'
 
 services:
   web:
-    build: .
+    build: ./backend/django/
     container_name: usersRestAPI01
     # command: bash -c "export API_AUTHENTICATION="False" && python3 manage.py makemigrations && python3 manage.py migrate && gunicorn usersRestAPI.wsgi -b 0.0.0.0:8000 && python3 manage.py collectstatic --noinput"
     command: python3 manage.py runserver 0.0.0.0:8000
     depends_on:
       - db
     volumes:
-      - ./src:/src
+      - ./backend/django/src:/src
     ports:
       - "8000:8000"
     
