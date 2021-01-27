@@ -27,6 +27,8 @@ class UserSerializer(ModelSerializer):
         )
 
     def create(self, validated_data):
+
+        print ("HOLAAA SERIALIZER CREATEEEE")
         addresstemp = validated_data.pop('address')
         professionalinformationtemp = validated_data.pop('professionalInformation')
         user = User.objects.create(**validated_data)

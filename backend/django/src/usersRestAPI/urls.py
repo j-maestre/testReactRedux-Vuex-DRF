@@ -9,7 +9,7 @@ router = routers.DefaultRouter()
 router.register(r'users_Admin', UserViewSetAdmin) 
 router.register(r'users', UserViewSet)
 
-urlpatterns = [
+urlpatterns = [   #Como meto esto en travels si solo tengo una carpeta
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),

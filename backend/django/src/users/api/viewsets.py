@@ -24,7 +24,10 @@ class UserViewSet(mixins.CreateModelMixin,
     # queryset = User.objects.all()
     queryset = User.objects.select_related('address')
 
-    def get_queryset(self):
+
+    #LIST ALL
+    def get_queryset(self):   #Donde le digo que Cuando haga un /users/ se venga aqui?!?!?!?!
+        print ("OLE LOS CANELONES GET QUERYYYY")
         queryset = self.queryset
         
         city = self.request.query_params.get('city', None)
@@ -47,6 +50,7 @@ class UserViewSet(mixins.CreateModelMixin,
         )
         return self.get_paginated_response(serializer.data)
 
+    #GET ONE
     def retrieve(self, request, name):
         serializer_context = {'request': request}
 
@@ -59,7 +63,7 @@ class UserViewSet(mixins.CreateModelMixin,
             serializer_instance,
             context=serializer_context
         )
-        print('*********** serializer.data ************')
+        print('*********** serializer.dataaaaaaaaaaaaaa ************')
         print(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
