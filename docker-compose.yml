@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 
 services:
   db:
@@ -8,18 +8,19 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-  django:
+  #Backend
+  django_1:
     build: backend/.
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./backend/:/code
+      - ./backend:/code
     ports:
       - "8000:8000"
     depends_on:
       - db
 
   vue:
-    container_name: 'VueJS'
+    container_name: "VueJS"
     build: ./frontend/vue-vuex/.
     working_dir: /app
     command: bash -c "npm install && npm run serve"
@@ -28,5 +29,5 @@ services:
     volumes:
       - ./frontend/vue-vuex:/app
     depends_on:
-      - django
+      - django_1
       - db
