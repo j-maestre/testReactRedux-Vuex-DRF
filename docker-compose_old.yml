@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  web:
+    build: ./backend/django/
+    container_name: backend_django
+    # command: bash -c "export API_AUTHENTICATION="False" && python3 manage.py makemigrations && python3 manage.py migrate && gunicorn forgetit.wsgi -b 0.0.0.0:8000 && python3 manage.py collectstatic --noinput"
+    command: python3 manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+    volumes:
+      - ./backend/django:/django
+    ports:
+      - "8000:8000"
+    
+  # db:
+  #   image: postgres:latest
+  #   container_name: postgres01 
+  #   environment:
+  #     POSTGRES_HOST_AUTH_METHOD: trust
+
+    # $ sudo docker exec -it users sh
+    # python3 manage.py makemigrations
+    # python3 manage.py migrate
+    # python3 manage.py createsuperuser -> admin/admin@gmail.com/123456789
+    # - Type `exit` to leave the sh session
+
+  vue:
+    container_name: 'VueJS'
+    build: frontend/vue-vuex/.
+    ports:
+      - "4000:8080"
