@@ -7,29 +7,34 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  django:
+
+  #Backend
+  django_1:
     build: backend/.
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - /backend/:/code
+      - ./backend:/code
     ports:
       - "8000:8000"
     depends_on:
-      - db
-  # db:
-  #   image: postgres:latest
-  #   container_name: postgres01 
-  #   environment:
-  #     POSTGRES_HOST_AUTH_METHOD: trust
-
-    # $ sudo docker exec -it users sh
-    # python3 manage.py makemigrations
-    # python3 manage.py migrate
-    # python3 manage.py createsuperuser -> admin/admin@gmail.com/123456789
-    # - Type `exit` to leave the sh session
-
+      - db    
+      
+  #Frontend
   vue:
     container_name: 'VueJS'
     build: frontend/vue-vuex/.
     ports:
       - "4000:8080"
+
+
+      # $ sudo docker exec -it users sh
+    # python3 manage.py makemigrations
+    # python3 manage.py migrate
+    # python3 manage.py createsuperuser -> admin/admin@gmail.com/123456789
+    # - Type `exit` to leave the sh session
+
+      # db:
+  #   image: postgres:latest
+  #   container_name: postgres01 
+  #   environment:
+  #     POSTGRES_HOST_AUTH_METHOD: trust
