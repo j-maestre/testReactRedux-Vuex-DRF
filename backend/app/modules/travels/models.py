@@ -8,7 +8,7 @@ class Travels(models.Model):
     # Id = models.CharField(max_length=10, unique=True)
     driverId = models.CharField(max_length=10)
     numPassengers = models.CharField(max_length=11) #,  validators=[validate_rg_length]
-    # CPF = models.CharField(max_length=12, unique=True, validators=[validate_cpf, validate_cpf_length])
+
     date = models.CharField(max_length=200)
     startTime = models.CharField(max_length=200)
     finishTime = models.CharField(max_length=200)
@@ -17,12 +17,6 @@ class Travels(models.Model):
     postalCode = models.CharField(max_length=200)
     createdAt = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
-
-    # phoneNumber = models.CharField(max_length=15)
-    # address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True, blank=True)
-    # professionalInformation = models.ForeignKey(ProfessionalInformation, on_delete=models.CASCADE, null=True, blank=True)
-    # dateOfBirth = models.DateField()
-    
 
     # @property
     # def description(self):
@@ -46,4 +40,4 @@ class Travels(models.Model):
             #Porque no devolvemos Active ??
         }
     
-    return travel 
+    # return travel 
