@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./backend/django/src:/src
+      - ./backend/django:/django
     ports:
       - "8000:8000"
     
