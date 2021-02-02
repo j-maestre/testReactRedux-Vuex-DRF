@@ -8,7 +8,7 @@ from rest_framework.permissions import (
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Travel #, Comment, Tag
+from .models import Travels #, Comment, Tag
 #from .renderers import TravelJSONRenderer #, CommentJSONRenderer
 from .serializers import TravelSerializer #, CommentSerializer, TagSerializer
 
@@ -22,7 +22,7 @@ class TravelViewSet(mixins.CreateModelMixin,
                    ):
 
     print("OLE LOS CANELONES")
-    queryset = list(Travel.objects.all())
+    queryset = list(Travels.objects.all())
     def list(self, request):
         print("OLE LOS CANELONES LIST ALL TRAVELS")
         serializer_context = {'request': request}

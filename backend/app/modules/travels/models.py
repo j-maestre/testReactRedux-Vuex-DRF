@@ -4,7 +4,7 @@ from django.db import models
 # from users.validations import validate_rg_length, validate_cpf, validate_cpf_length
 
 
-class Travel(models.Model):
+class Travels(models.Model):
     # Id = models.CharField(max_length=10, unique=True)
     driverId = models.CharField(max_length=10)
     numPassengers = models.CharField(max_length=11) #,  validators=[validate_rg_length]

@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 # from conduit.apps.profiles.serializers import ProfileSerializer
 
-from .models import Travel #, Comment, Tag
+from .models import Travels #, Comment, Tag
 # from .relations import TagRelatedField
 
 
@@ -19,7 +19,7 @@ class TravelSerializer(serializers.ModelSerializer):
     # updatedAt = serializers.SerializerMethodField(method_name='get_updated_at')
 
     class Meta:
-        model = Travel
+        model = Travels
         fields = (
             "Id",
             "driverId",
