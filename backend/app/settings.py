@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'travels',  #El error de la terminal viene de aqui
     'app.modules.travels',
+    'app.modules.categories',
+    # 'testXema',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'forgetit',
         'USER': 'postgres',
         'PASSWORD': '123456789',
         'HOST': 'postgresql',
