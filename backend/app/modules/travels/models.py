@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Travels(models.Model):
-    # Id = models.CharField(max_length=10, unique=True)
+    Id = models.CharField(max_length=10, unique=True)
     driverId = models.CharField(max_length=10)
     numPassengers = models.CharField(max_length=11) #,  validators=[validate_rg_length]
 
@@ -22,8 +22,8 @@ class Travels(models.Model):
     # def description(self):
     #     return "%s - %s" % (self.name, self.professionalInformation.profession)
 
-    # def __str__(self):
-    #     return self.Id #Devolvemos el id del travel
+    def __str__(self):
+        return self.Id #Devolvemos el id del travel
 
     # def to_dict(self):
     #     travel = {
