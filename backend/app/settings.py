@@ -25,7 +25,7 @@ SECRET_KEY = 'x20259cecwnbuuvokt20!k74nh(p(tuz_g00fkanj)733(%hh+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'travels',  #El error de la terminal viene de aqui
     'app.modules.travels',
 ]
 
@@ -74,17 +75,19 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+print("ANTES de la database------")
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': '123456789',
         'HOST': 'db',
         'PORT': 5432,
     }
 }
+print(DATABASES)
 
 
 # Password validation
