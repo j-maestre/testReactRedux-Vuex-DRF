@@ -1,26 +1,35 @@
 version: "3.3"
 
 services:
-  db:
-    image: postgres
+  postgresql:
+    image: postgres:13
+    container_name: "PostgreSQL_container"
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456789
-
-  #Backend
-  django_1:
-    build: backend/.
-    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./backend:/code
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - network
+
+  servidor:
+    build: backend/.
+    container_name: "Django_container"
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend:/code
     depends_on:
-      - db
+      - postgresql
+    networks:
+      - network
 
   vue:
-    container_name: "VueJS"
+    container_name: "VueJS_container"
     build: ./frontend/vue-vuex/.
     working_dir: /app
     command: bash -c "npm install && npm run serve"
@@ -29,5 +38,22 @@ services:
     volumes:
       - ./frontend/vue-vuex:/app
     depends_on:
-      - django_1
-      - db
+      - servidor
+    networks:
+      - network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "p@p.p"
+      PGADMIN_DEFAULT_PASSWORD: "xemagordo"
+    ports:
+      - 6969:80
+    depends_on:
+      - postgresql
+    networks:
+      - network
+
+networks:
+  network:
