@@ -19,6 +19,7 @@ services:
     build: backend/.
     container_name: "Django_container"
     command: python manage.py runserver 0.0.0.0:8000
+    # run: python3 manage.py makemigrations; python3 manage.py migrate
     ports:
       - "8000:8000"
     volumes:

@@ -38,11 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app.core',
     'app.modules.travels',
     'app.modules.categories',
     'app.modules.passengers',
-    'app.modules.users',
-    # 'testXema',
+    'app.modules.authentication',
+    'app.modules.profiles',
 ]
 
 MIDDLEWARE = [
