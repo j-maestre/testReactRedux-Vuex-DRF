@@ -34,19 +34,19 @@ services:
       # python3 manage.py makemigrations
       # python3 manage.py migrate
 
-  # vue:
-  #   container_name: "VueJS_container"
-  #   build: ./frontend/vue-vuex/.
-  #   working_dir: /app
-  #   command: bash -c "npm install && npm run serve"
-  #   ports:
-  #     - "4000:8080"
-  #   volumes:
-  #     - ./frontend/vue-vuex:/app
-  #   depends_on:
-  #     - servidor
-  #   networks:
-  #     - network
+  vue:
+    container_name: "VueJS_container"
+    build: ./frontend/vue-vuex/.
+    working_dir: /app
+    command: bash -c "npm install && npm run serve"
+    ports:
+      - "4000:8080"
+    volumes:
+      - ./frontend/vue-vuex:/app
+    depends_on:
+      - servidor
+    networks:
+      - network
 
   pgadmin:
     image: dpage/pgadmin4

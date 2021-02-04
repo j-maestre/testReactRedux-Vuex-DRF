@@ -1,23 +1,19 @@
 <template>
   <div id="app">
-    <div class="router">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">Search</router-link>
-      <router-link to="/travels">Travels</router-link>
-      <router-link to="/login">Login</router-link>
-    </div>
+    <Header></Header>
     <router-view />
   </div>
 </template>
 
 <script>
+import Header from "./components/Header";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    Header,
+  },
 };
 </script>
 
-<style>
-#nav {
-}
-</style>
+<style></style>
