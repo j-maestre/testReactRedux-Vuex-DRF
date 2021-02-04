@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.urls import path
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    # url(r'^api/', include('app.modules.travels.urls', namespace='travels')),
+    url(r'^api/', include(('app.modules.travels.urls','travels'), namespace='travels')),
 
     # url(r'^api/', include('conduit.apps.authentication.urls', namespace='authentication')),
     # url(r'^api/', include('conduit.apps.profiles.urls', namespace='profiles')),

@@ -21,7 +21,6 @@ def __str__(self):
 
 def to_dict(self):
     travel = {
-        "Id": self.Id,
         "driverId": self.driverId,
         "numPassengers": self.numPassengers,
         "date": self.date,
