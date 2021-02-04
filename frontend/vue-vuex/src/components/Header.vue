@@ -16,7 +16,7 @@
     <!-- Version escritorio -->
     <section class="header-desktop">
       <div class="header-logo">
-        <img src="../assets/logo.png" alt="" />
+        <h2>FORGETIT</h2>
       </div>
       <nav class="header-menu">
         <router-link active-class="active" to="/">
@@ -95,11 +95,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Roboto Condensed", sans-serif;
   margin-left: 150px;
-}
-
-.header-desktop .header-logo img {
-  width: 150px;
+  color: white;
+  font-size: 30px;
 }
 
 .header-desktop .header-menu {
