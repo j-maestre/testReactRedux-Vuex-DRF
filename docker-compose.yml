@@ -28,6 +28,11 @@ services:
     networks:
       - network
 
+      # sudo docker exec -it Django_container sh
+      # python manage.py startapp projectApp
+      # python3 manage.py makemigrations
+      # python3 manage.py migrate
+
   # vue:
   #   container_name: "VueJS_container"
   #   build: ./frontend/vue-vuex/.

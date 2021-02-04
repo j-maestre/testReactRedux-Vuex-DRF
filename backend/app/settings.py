@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'travels',  #El error de la terminal viene de aqui
     'app.modules.travels',
     'app.modules.categories',
+    'app.modules.passengers',
+    'app.modules.users',
     # 'testXema',
 ]
 
