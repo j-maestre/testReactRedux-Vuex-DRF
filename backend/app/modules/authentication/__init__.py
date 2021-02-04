@@ -1,4 +1,4 @@
-from django.apps import AppConfig #Interno de django
+from django.apps import AppConfig
 
 
 class AuthenticationAppConfig(AppConfig):
