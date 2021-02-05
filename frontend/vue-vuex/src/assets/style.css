@@ -2,9 +2,47 @@ body {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
 #app {
   position: absolute;
   height: 100%;
   width: 100%;
   font-family: "Nunito Sans", Sans-serif;
+}
+
+h1 {
+  margin: 0;
+}
+
+.font-primary {
+  color: #000000;
+  font-size: 72px;
+}
+
+.font-secundary {
+  color: #000000;
+  font-size: 45px;
+  margin: 20px 0px;
+}
+
+.button-primary p {
+  border: 2px solid white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.button-primary p:hover,
+.button-primary.active p {
+  color: black;
+  background-color: #faff8a;
+  border-color: #faff8a;
+}
+
+.link {
+  color: #ffc107;
+  text-decoration: none;
 }

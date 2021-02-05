@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vue/cli": "^4.5.11",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "es6-promise": "^4.2.8",
     "i": "^0.3.6",
@@ -17,10 +18,9 @@
     "primevue": "^3.2.0-rc.1",
     "run": "^1.4.0",
     "serve": "^11.3.2",
-    "undefined": "||",
     "vue": "^3.0.0",
     "vue-router": "^4.0.3",
-    "vuex": "^3.6.2"
+    "vuex": "^4.0.0-alpha.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -29,7 +29,8 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0"
+    "eslint-plugin-vue": "^7.0.0-0",
+    "vue-cli-plugin-vue-next": "^0.0.4"
   },
   "eslintConfig": {
     "root": true,
