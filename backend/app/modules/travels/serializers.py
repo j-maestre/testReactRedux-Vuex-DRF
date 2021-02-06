@@ -12,7 +12,7 @@ class TravelSerializer(serializers.ModelSerializer):
         model = Travels
         fields = (
             # 'id',
-            # 'driverId',
+            'driver',
             'numPassengers',
             'date',
             'startTime',
@@ -22,12 +22,12 @@ class TravelSerializer(serializers.ModelSerializer):
             'postalCode', 
         )
     def create(self, validated_data):
-        driverId = self.context.get('driverId', None)
+        driver = self.context.get('driver', None)
 
         print('************** create travel ser *******************')
         # print(validated_data.get('hashtags', []))
         # hashtags = validated_data.pop('hashtags', [])
-        post = Post.objects.create(driverId=driverId, **validated_data)
+        post = Post.objects.create(driver=driver, **validated_data)
         # for hashtag in hashtags:
         #     post.hashtags.add(hashtag)
         return post

@@ -22,8 +22,8 @@ urlpatterns = [
 
     url(r'^api/', include(('app.modules.travels.urls','travels'), namespace='travels')),
 
-    # url(r'^api/', include('conduit.apps.authentication.urls', namespace='authentication')),
-    # url(r'^api/', include('conduit.apps.profiles.urls', namespace='profiles')),
+    url(r'^api/', include(('app.modules.authentication.urls','authentication'), namespace='authentication')),
+    url(r'^api/', include(('app.modules.profiles.urls','profiles'), namespace='profiles')),
 ]
 
 

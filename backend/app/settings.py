@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'app.modules.passengers',
     'app.modules.authentication',
     'app.modules.profiles',
+    'app.modules.articles',
 ]
 
 MIDDLEWARE = [

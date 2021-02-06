@@ -12,7 +12,7 @@ Tabla 2: profile
 
 Tabla 3: travels
     id - Serial (PK)
-    driver_id - Integer (AK)
+    driver - User (FK)
     num_passengers - Integer
     date - Date
     start_time - Time

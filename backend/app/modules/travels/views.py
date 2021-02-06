@@ -43,28 +43,28 @@ class ListTravels(generics.ListCreateAPIView):
     #     return self.get_paginated_response(serializer.data)
 
     #POST http://0.0.0.0:8000/api/travels/    Tienes que estar logueado
-    def create(self, request):
-        print("POST TRAVELLL")
-        serializer_context = {
-            'driverId': 1 #Esto es el id del usuario logueado, que es quien publica el viaje que es el conductor #request.user.profile,
-        }
-        print('************** create post view *******************')
-        print(request.data.get('post', {}))
+    # def create(self, request):
+    #     print("POST TRAVELLL")
+    #     serializer_context = {
+    #         'driver': 1 #Esto es el usuario logueado, que es quien publica el viaje que es el conductor #request.user.profile,
+    #     }
+    #     print('************** create post view *******************')
+    #     print(request.data.get('post', {}))
 
 
-        serializer_data = request.data.get('post', {})
+    #     serializer_data = request.data.get('post', {})
 
-        print("SERIALIZER data: ",serializer_data)
+    #     print("SERIALIZER data: ",serializer_data)
         
-        serializer = self.serializer_class(
-            data=serializer_data, context=serializer_context
-        )
-        serializer.is_valid(raise_exception=True)
-        print('*********** validated_data ************')
-        print(serializer.validated_data)
+    #     serializer = self.serializer_class(
+    #         data=serializer_data, context=serializer_context
+    #     )
+    #     serializer.is_valid(raise_exception=True)
+    #     print('*********** validated_data ************')
+    #     print(serializer.validated_data)
 
-        serializer.save()
+    #     serializer.save()
         
-        print('*********** data ************')
-        print(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     print('*********** data ************')
+    #     print(serializer.data)
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED)
