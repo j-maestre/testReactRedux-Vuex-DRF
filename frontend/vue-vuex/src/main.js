@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import store from "./store";
 const vue = createApp(App);
+vue.use(store);
 
 // Style
 import "./assets/style.css";
@@ -8,7 +10,7 @@ import "./assets/style.css";
 // Librarias
 import router from "./router";
 import PrimeVue from "primevue/config";
-import "primevue/resources/themes/arya-blue/theme.css";
+import "primevue/resources/themes/saga-orange/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 vue.use(router);

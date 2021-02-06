@@ -31,7 +31,7 @@
           <i class="far fa-address-book"></i>
           <p>Contact</p>
         </router-link>
-        <router-link active-class="active" class="header-button" to="/login">
+        <router-link active-class="active" class="button-primary" to="/login">
           <p>Iniciar Sesion</p>
         </router-link>
       </nav>
@@ -129,19 +129,6 @@ export default {
 .header-desktop .header-menu a:hover,
 .header-desktop .header-menu a.active {
   color: #faff8a;
-}
-
-.header-desktop .header-button p {
-  border: 2px solid white;
-  padding: 10px;
-  font-weight: bold;
-}
-
-.header-desktop .header-button p:hover,
-.header-desktop a.header-button.active p {
-  color: black;
-  background-color: #faff8a;
-  border-color: #faff8a;
 }
 
 @media (max-width: 886px) {
