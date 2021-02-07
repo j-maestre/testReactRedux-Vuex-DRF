@@ -25,12 +25,12 @@ const actions = {
     userApi
       .login(credentials)
       .then(() => {
-        commit("SET_LOADER", false);
         commit("SET_MSG", {
           type: true,
           title: "Authentication success",
           details: "The login was successful",
         });
+        commit("LOGIN", credentials);
       })
       .catch(() =>
         commit("SET_MSG", {
@@ -40,7 +40,42 @@ const actions = {
         })
       );
 
-    commit("LOGIN", credentials);
+    commit("SET_LOADER", false);
+  },
+
+  register({ commit }, credentials) {
+    commit("SET_LOADER", true);
+
+    userApi
+      .register(credentials)
+      .then(() => {
+        userApi
+          .login(credentials)
+          .then(() => {
+            commit("SET_MSG", {
+              type: true,
+              title: "Registation success",
+              details: "The register was successful",
+            });
+            commit("LOGIN", credentials);
+          })
+          .catch(() =>
+            commit("SET_MSG", {
+              type: false,
+              title: "Registation failed",
+              details: "The register was completed incorrectly",
+            })
+          );
+      })
+      .catch(() =>
+        commit("SET_MSG", {
+          type: false,
+          title: "Registation failed",
+          details: "The register was completed incorrectly",
+        })
+      );
+
+    commit("SET_LOADER", false);
   },
 };
 

@@ -1,32 +1,32 @@
 <template>
   <div class="page">
     <section class="header-mobile">
-      <h1 class="font-secundary">¿Cuál es tu email y tu contraseña?</h1>
+      <h1 class="font-secundary">Registrate en FORGETIT y gana dinero!!</h1>
+      <InputText
+        class="input-type"
+        placeholder="Username"
+        v-model="credentials.username"
+      />
       <InputText
         class="input-type"
         placeholder="Email"
-        v-model="credentials.username"
+        v-model="credentials.email"
       />
       <Password
         class="input-type"
         placeholder="Password"
         v-model="credentials.password"
-        :feedback="false"
-      />
-      <div class="check-type">
-        <p>Recordarme email</p>
-        <Checkbox v-model="credentials.checked" :binary="true" />
-      </div>
+      ></Password>
       <div @click="onSubmit()" class="button-type">
         <a class="button-primary login-button">
-          <p>Iniciar sesion</p>
+          <p>Registrate</p>
         </a>
       </div>
       <hr class="separador" />
       <div class="login-message">
-        <p>No tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
-        <a href="/register" class="button-primary login-button">
-          <p>Registrate</p>
+        <p>Ya tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
+        <a href="/login" class="button-primary login-button">
+          <p>Inicia Sesión</p>
         </a>
       </div>
       <div v-if="loading" class="loading">
@@ -34,30 +34,34 @@
       </div>
     </section>
     <section class="header-desktop">
-      <h1 class="font-secundary">¿Cuál es tu email y tu contraseña?</h1>
+      <h1 class="font-secundary">Registrate en FORGETIT y gana dinero!!</h1>
+      <InputText
+        class="input-type"
+        placeholder="Username"
+        v-model="credentials.username"
+      />
       <InputText
         class="input-type"
         placeholder="Email"
-        v-model="credentials.username"
+        v-model="credentials.email"
       />
       <Password
         class="input-type"
         placeholder="Password"
-        v-model="credentials.password"
-        :feedback="false"
-      />
+        v-model="value3"
+      ></Password>
 
       <div class="button-type">
         <a class="button-primary login-button">
-          <p @click="onSubmit()">Iniciar sesion</p>
+          <p @click="onSubmit()">Registrate</p>
         </a>
       </div>
       <hr class="separador" />
 
       <div class="login-message">
-        <p>No tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
-        <a href="/register" class="button-primary login-button">
-          <p>Registrate</p>
+        <p>Ya tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
+        <a href="/login" class="button-primary login-button">
+          <p>Inicia Sesión</p>
         </a>
       </div>
       <div v-if="loading" class="loading">
@@ -70,7 +74,6 @@
 <script>
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
-import Checkbox from "primevue/checkbox";
 
 // import { mapActions } from 'vuex';
 import { reactive } from "vue";
@@ -78,13 +81,18 @@ import store from "../store/index";
 import { computed } from "vue";
 
 export default {
-  components: { InputText, Password, Checkbox },
+  components: { InputText, Password },
   setup() {
-    const credentials = reactive({ username: "", password: "", checked: "" });
+    const credentials = reactive({
+      username: "",
+      email: "",
+      password: "",
+      checked: "",
+    });
     const loading = computed(() => store.state.user.loading);
 
     function onSubmit() {
-      store.dispatch("login", credentials);
+      store.dispatch("register", credentials);
     }
 
     return {
@@ -179,14 +187,6 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-
-.page .header-mobile .check-type {
-  margin: 0px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .page .header-mobile .separador {
   height: 2px;
   background-color: black;
