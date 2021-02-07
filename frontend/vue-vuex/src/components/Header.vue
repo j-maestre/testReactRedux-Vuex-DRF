@@ -56,6 +56,8 @@ export default {
   justify-content: space-around;
   align-items: flex-end;
   border-top: 2px solid black;
+  z-index: 1;
+  background: white;
 }
 
 .mobile i {

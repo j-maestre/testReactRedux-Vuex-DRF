@@ -49,5 +49,6 @@ export default {
 <style scoped>
 .autocomplete {
   width: 100%;
+  padding: 15px;
 }
 </style>

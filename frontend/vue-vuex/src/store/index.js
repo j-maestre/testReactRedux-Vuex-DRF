@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import user from "./modules/user";
+import movement from "./modules/movement";
 
 const state = {
   msg: {},
@@ -13,6 +14,7 @@ const getters = {};
 const actions = {};
 const modules = {
   user,
+  movement,
 };
 
 const store = createStore({

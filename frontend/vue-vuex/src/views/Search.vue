@@ -15,12 +15,12 @@
           class="category"
           v-for="category in render_categories"
           :key="category.id"
+          @click="setCategory(category.id)"
         >
           <img :src="category.img" alt="" />
-          {{ category.name }}
+          <p>{{ category.name }}</p>
         </div>
       </div>
-      {{ filteredCategories }}
     </section>
     <section class="desktop">
       <h1 class="font-primary">¡OH NO, SE ME HAN OLVIDADO LAS LLAVES!</h1>
@@ -30,6 +30,7 @@
 
 <script>
 import AutoComplete from "../components/AutoComplete";
+import store from "../store/index";
 
 export default {
   data() {
@@ -39,35 +40,51 @@ export default {
         {
           id: 1,
           name: "Libros",
-          img: require("@/assets/categories/libro.png"),
+          img: require("@/assets/categories/libro.jpg"),
         },
         {
           id: 2,
           name: "Tuppers",
-          img: "img.jpg",
+          img: require("@/assets/categories/libro.jpg"),
         },
         {
           id: 3,
           name: "Juguetes",
-          img: "img.jpg",
+          img: require("@/assets/categories/libro.jpg"),
         },
         {
           id: 4,
-          name: "Tgecnología",
-          img: "img.jpg",
+          name: "Tecnología",
+          img: require("@/assets/categories/libro.jpg"),
         },
         {
           id: 5,
           name: "Ropa",
-          img: "img.jpg",
+          img: require("@/assets/categories/libro.jpg"),
         },
         {
           id: 6,
           name: "Accesorios",
-          img: "img.jpg",
+          img: require("@/assets/categories/libro.jpg"),
+        },
+        {
+          id: 7,
+          name: "Electronica",
+          img: require("@/assets/categories/libro.jpg"),
+        },
+        {
+          id: 8,
+          name: "Coches",
+          img: require("@/assets/categories/libro.jpg"),
         },
       ],
     };
+  },
+  methods: {
+    setCategory(id) {
+      console.log("prueba");
+      store.commit("SET_CATEGORY", id);
+    },
   },
   mounted() {
     this.filteredCategories = [...this.categories];
@@ -98,8 +115,37 @@ export default {
 .page .mobile {
   flex-direction: column;
 }
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 30px;
+  justify-content: space-between;
+}
+
 .category {
-  width: 100px;
-  height: 100px;
+  position: relative;
+  margin: 5px 0px;
+}
+
+.category p {
+  position: absolute;
+  top: 0;
+  font-weight: bold;
+  color: white;
+  font-size: 7vw;
+  height: 100%;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category img {
+  width: calc(50vw - 40px);
+  height: calc(50vw - 40px);
+  border-radius: 10%;
+  object-fit: cover; /* or object-fit: contain; */
 }
 </style>

@@ -38,3 +38,4 @@ Mejoras
 1. Store modularizado
 2. Toaster implementado a nivel de aplicacion (store global, no por modulo)
 3. Responsive, version mobile and desktop.
+4. Componente de search con autocomplete.
