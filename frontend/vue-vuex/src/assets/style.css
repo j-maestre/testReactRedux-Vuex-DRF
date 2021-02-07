@@ -51,10 +51,15 @@ h1 {
   .font-secundary {
     font-size: 27px;
     margin: 20px 30px;
+    text-decoration: underline;
+    text-decoration-color: #faff8a;
   }
 
   .font-primary {
     font-size: 30px;
     margin: 20px 30px;
+    text-decoration: underline;
+    text-decoration-color: #faff8a;
+    border-bottom-width: 5px;
   }
 }

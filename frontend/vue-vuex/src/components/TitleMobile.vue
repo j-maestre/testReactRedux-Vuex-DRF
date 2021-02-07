@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "Header",
+  name: "TitleMobile",
   setup() {
     let history = window.history.length;
     console.log(history);
