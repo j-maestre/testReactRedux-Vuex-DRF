@@ -18,7 +18,6 @@
         <p>Iniciar sesion</p>
       </a>
     </div>
-
     <hr class="separador" />
 
     <div class="login-message">
@@ -27,20 +26,26 @@
         <p>Registrate</p>
       </a>
     </div>
+    <div v-if="loading" class="loading">
+      <img src="../assets/loading.svg" alt="loading..." />
+    </div>
   </div>
 </template>
 
 <script>
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
-import { useStore } from "vuex";
+
+// import { mapActions } from 'vuex';
 import { reactive } from "vue";
+import store from "../store/index";
+import { computed } from "vue";
 
 export default {
   components: { InputText, Password },
   setup() {
-    const store = useStore();
     const credentials = reactive({ username: "", password: "" });
+    const loading = computed(() => store.state.user.loading);
 
     function onSubmit() {
       store.dispatch("login", credentials);
@@ -49,6 +54,7 @@ export default {
     return {
       credentials,
       onSubmit,
+      loading,
     };
   },
 };
@@ -66,7 +72,8 @@ export default {
 
 .button-type {
   display: flex;
-  width: 500px;
+  width: 50%;
+  min-width: 500px;
   justify-content: flex-start;
 }
 
@@ -74,7 +81,8 @@ export default {
   padding: 10px !important;
   margin: 10px !important;
   display: flex;
-  width: 500px;
+  width: 50%;
+  min-width: 500px;
   justify-content: flex-start;
 }
 
@@ -82,7 +90,8 @@ export default {
   height: 2px;
   background-color: black;
   border: none;
-  width: 500px;
+  width: 50%;
+  min-width: 500px;
   margin: 20px 0px;
 }
 
@@ -98,9 +107,22 @@ export default {
 
 .login-message {
   display: flex;
-  width: 500px;
+  width: 50%;
+  min-width: 500px;
   justify-content: space-evenly;
   align-items: center;
   font-weight: bold;
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.39);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

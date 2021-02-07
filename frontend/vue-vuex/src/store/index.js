@@ -1,53 +1,26 @@
 import { createStore } from "vuex";
-import { userLogin } from "../api";
+import user from "./modules/user";
 
 const state = {
-  count: 0,
-  user: {},
-  msg_success: "",
-  msg_error: "",
+  msg: {},
 };
-
 const mutations = {
-  setUser(state, data) {
-    state.user = data;
-  },
-  setSuccess(state, msg) {
-    state.msg_success = msg;
-  },
-  setError(state, msg) {
-    state.msg_error = msg;
-  },
-  increment(state) {
-    state.count++;
-  },
-  decrement(state) {
-    state.count--;
+  SET_MSG(state, payload) {
+    state.msg = payload;
   },
 };
-
-const actions = {
-  async login({ commit }, credentials) {
-    // Hacemos el login
-    const result = await userLogin(credentials);
-
-    console.log(result);
-    // // Comprobamos la informacion
-    // if (result.data.success) {
-    //   localStorage.setItem("token", result.data);
-    //   commit("setSuccess", "Authentication Success");
-    //   router.push("/");
-    // } else {
-    //   commit("setError", "Authentication Failed");
-    // }
-    commit("setSuccess", "Authentication Success");
-  },
+const getters = {};
+const actions = {};
+const modules = {
+  user,
 };
 
 const store = createStore({
   state,
   mutations,
+  getters,
   actions,
+  modules,
 });
 
 export default store;

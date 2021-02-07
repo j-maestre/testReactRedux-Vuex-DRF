@@ -1,1 +1,1 @@
-import "./services/user.service.js";
+export * as userApi from "./services/user.service.js";
