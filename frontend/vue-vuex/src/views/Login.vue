@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <section class="header-mobile">
+    <section class="mobile">
       <h1 class="font-secundary">¿Cuál es tu email y tu contraseña?</h1>
       <InputText
         class="input-type"
@@ -18,14 +18,14 @@
         <Checkbox v-model="credentials.checked" :binary="true" />
       </div>
       <div @click="onSubmit()" class="button-type">
-        <a class="button-primary login-button">
+        <a class="button-primary button">
           <p>Iniciar sesion</p>
         </a>
       </div>
       <hr class="separador" />
-      <div class="login-message">
+      <div class="message">
         <p>No tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
-        <a href="/register" class="button-primary login-button">
+        <a href="/register" class="button-primary button">
           <p>Registrate</p>
         </a>
       </div>
@@ -33,7 +33,7 @@
         <img src="../assets/loading.svg" alt="loading..." />
       </div>
     </section>
-    <section class="header-desktop">
+    <section class="desktop">
       <h1 class="font-secundary">¿Cuál es tu email y tu contraseña?</h1>
       <InputText
         class="input-type"
@@ -48,15 +48,15 @@
       />
 
       <div class="button-type">
-        <a class="button-primary login-button">
+        <a class="button-primary button">
           <p @click="onSubmit()">Iniciar sesion</p>
         </a>
       </div>
       <hr class="separador" />
 
-      <div class="login-message">
+      <div class="message">
         <p>No tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
-        <a href="/register" class="button-primary login-button">
+        <a href="/register" class="button-primary button">
           <p>Registrate</p>
         </a>
       </div>
@@ -97,28 +97,7 @@ export default {
 </script>
 
 <style>
-.page {
-  height: calc(100vh - 100px);
-  width: 100%;
-}
-
-.page .header-desktop {
-  height: calc(100vh - 100px);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.page .header-desktop .button-type {
-  display: flex;
-  width: 50%;
-  min-width: 500px;
-  justify-content: flex-start;
-}
-
-.page .header-desktop .input-type {
+.desktop .input-type {
   padding: 10px !important;
   margin: 10px !important;
   display: flex;
@@ -127,7 +106,46 @@ export default {
   justify-content: flex-start;
 }
 
-.page .header-desktop .separador {
+.mobile .input-type {
+  margin: 10px 30px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
+<style scoped>
+.page {
+  height: calc(100vh - 100px);
+  width: 100%;
+}
+
+.page .desktop {
+  height: calc(100vh - 100px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page .desktop .button-type {
+  display: flex;
+  width: 50%;
+  min-width: 500px;
+  justify-content: flex-start;
+}
+
+.page .desktop .input-type {
+  padding: 10px !important;
+  margin: 10px !important;
+  display: flex;
+  width: 50%;
+  min-width: 500px;
+  justify-content: flex-start;
+}
+
+.page .desktop .separador {
   height: 2px;
   background-color: black;
   border: none;
@@ -136,17 +154,17 @@ export default {
   margin: 20px 0px;
 }
 
-.page .header-desktop .login-button p {
+.page .desktop .button p {
   border-color: black;
   cursor: pointer;
   margin: 10px 0px;
 }
 
-.page .header-desktop .login-button p:hover {
+.page .desktop .button p:hover {
   border-color: black;
 }
 
-.page .header-desktop .login-message {
+.page .desktop .message {
   display: flex;
   width: 50%;
   min-width: 500px;
@@ -155,7 +173,7 @@ export default {
   font-weight: bold;
 }
 
-.page .header-desktop .loading {
+.page .desktop .loading {
   position: absolute;
   top: 0;
   left: 0;
@@ -167,12 +185,12 @@ export default {
   align-items: center;
 }
 
-.page .header-mobile {
+.page .mobile {
   display: none;
   flex-direction: column;
 }
 
-.page .header-mobile .input-type {
+.page .mobile .input-type {
   margin: 10px 30px;
   padding: 15px;
   display: flex;
@@ -180,14 +198,14 @@ export default {
   align-items: center;
 }
 
-.page .header-mobile .check-type {
+.page .mobile .check-type {
   margin: 0px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.page .header-mobile .separador {
+.page .mobile .separador {
   height: 2px;
   background-color: black;
   border: none;
@@ -195,28 +213,28 @@ export default {
   margin: 30px auto 20px auto;
 }
 
-.page .header-mobile .login-button p {
+.page .mobile .button p {
   border-color: black;
   cursor: pointer;
   margin: 10px 30px;
   text-align: center;
 }
 
-.page .header-mobile .login-button p:hover {
+.page .mobile .button p:hover {
   border-color: black;
 }
 
-.page .header-mobile .login-message p {
+.page .mobile .message p {
   text-align: center;
   font-weight: bold;
 }
 
 @media (max-width: 746px) {
-  .page .header-desktop {
+  .page .desktop {
     display: none;
   }
 
-  .page .header-mobile {
+  .page .mobile {
     display: flex;
   }
 }

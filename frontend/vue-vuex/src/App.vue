@@ -44,3 +44,23 @@ export default {
   },
 };
 </script>
+
+<style>
+.mobile {
+  display: none;
+}
+
+.desktop {
+  display: flex;
+}
+
+@media (max-width: 746px) {
+  .desktop {
+    display: none !important;
+  }
+
+  .mobile {
+    display: flex !important;
+  }
+}
+</style>

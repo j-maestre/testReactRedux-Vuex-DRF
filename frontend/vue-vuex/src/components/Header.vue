@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <!-- Version movil -->
-    <section class="header-mobile">
+    <section class="mobile">
       <router-link active-class="active" to="/travels">
         <i class="fas fa-car"></i>
       </router-link>
@@ -14,11 +14,11 @@
     </section>
 
     <!-- Version escritorio -->
-    <section class="header-desktop">
-      <div class="header-logo">
+    <section class="desktop">
+      <div class="logo">
         <h2>FORGETIT</h2>
       </div>
-      <nav class="header-menu">
+      <nav class="menu">
         <router-link active-class="active" to="/">
           <i class="fas fa-search"></i>
           <p>Buscar</p>
@@ -47,7 +47,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.header-mobile {
+.mobile {
   display: none;
   position: fixed;
   bottom: 0;
@@ -58,12 +58,12 @@ export default {
   border-top: 2px solid black;
 }
 
-.header-mobile i {
+.mobile i {
   color: black;
   font-size: 25px;
 }
 
-.header-mobile a {
+.mobile a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,17 +72,17 @@ export default {
   text-decoration: none;
 }
 
-.header-mobile a.active {
+.mobile a.active {
   background-color: black;
   height: 115%;
   width: 120%;
 }
-.header-mobile a.active i {
+.mobile a.active i {
   color: #faff8a;
   font-size: 35px;
 }
 
-.header-desktop {
+.desktop {
   background-color: black;
   width: 100%;
   height: 100px;
@@ -90,7 +90,7 @@ export default {
   justify-content: space-between;
 }
 
-.header-desktop .header-logo {
+.desktop .logo {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -101,14 +101,14 @@ export default {
   font-size: 30px;
 }
 
-.header-desktop .header-menu {
+.desktop .menu {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.header-desktop .header-menu a {
+.desktop .menu a {
   padding: 20px;
   display: flex;
   height: 100%;
@@ -118,36 +118,26 @@ export default {
   color: white;
 }
 
-.header-desktop .header-menu a p {
+.desktop .menu a p {
   margin-left: 7px;
 }
 
-.header-desktop .header-menu a i {
+.desktop .menu a i {
   font-size: 20px;
 }
 
-.header-desktop .header-menu a:hover,
-.header-desktop .header-menu a.active {
+.desktop .menu a:hover,
+.desktop .menu a.active {
   color: #faff8a;
 }
 
 @media (max-width: 886px) {
-  .header-desktop .header-logo {
+  .desktop .logo {
     margin-left: 14px;
   }
 
-  .header-desktop .header-logo {
+  .desktop .logo {
     margin-left: 14px;
-  }
-}
-
-@media (max-width: 746px) {
-  .header-desktop {
-    display: none;
-  }
-
-  .header-mobile {
-    display: flex;
   }
 }
 </style>
