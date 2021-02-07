@@ -46,3 +46,10 @@ h1 {
   color: #ffc107;
   text-decoration: none;
 }
+
+@media (max-width: 746px) {
+  .font-secundary {
+    font-size: 27px;
+    margin: 20px 30px;
+  }
+}

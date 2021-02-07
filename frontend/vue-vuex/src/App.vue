@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <TitleMobile />
+    <Header />
     <router-view />
     <Toast />
-    <Toast position="top-left" group="tl" />
-    <Toast position="bottom-left" group="bl" />
-    <Toast position="bottom-right" group="br" />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
+import TitleMobile from "./components/TitleMobile";
 import Toast from "primevue/toast";
 import { computed } from "vue";
 import store from "./store/index";
@@ -27,6 +26,7 @@ export default {
   components: {
     Header,
     Toast,
+    TitleMobile,
   },
   watch: {
     store_msg: function(value) {
