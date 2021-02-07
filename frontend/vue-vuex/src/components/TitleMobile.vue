@@ -1,7 +1,7 @@
 <template>
-  <div class="header">
+  <div class="title">
     <!-- Version movil -->
-    <section class="header-mobile">
+    <section class="mobile">
       <i
         v-if="history > 1"
         @click="$router.go(-1)"
@@ -28,7 +28,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.header-mobile {
+.mobile {
   display: none;
   height: 60px;
   width: 100%;
@@ -38,26 +38,20 @@ export default {
   position: relative;
 }
 
-.header-mobile h2 {
+.mobile h2 {
   margin: 0;
   font-style: italic;
 }
 
-.header-mobile .user {
+.mobile .user {
   position: absolute;
   right: 15px;
   font-size: 25px;
 }
 
-.header-mobile .back {
+.mobile .back {
   position: absolute;
   left: 15px;
   font-size: 25px;
-}
-
-@media (max-width: 746px) {
-  .header-mobile {
-    display: flex;
-  }
 }
 </style>

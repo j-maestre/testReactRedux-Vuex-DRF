@@ -1,32 +1,32 @@
 <template>
   <div class="page">
     <section class="mobile">
-      <h1 class="font-secundary">¿Cuál es tu email y tu contraseña?</h1>
+      <h1 class="font-secundary">Registrate en FORGETIT y gana dinero!!</h1>
+      <InputText
+        class="input-type"
+        placeholder="Username"
+        v-model="credentials.username"
+      />
       <InputText
         class="input-type"
         placeholder="Email"
-        v-model="credentials.username"
+        v-model="credentials.email"
       />
       <Password
         class="input-type"
         placeholder="Password"
         v-model="credentials.password"
-        :feedback="false"
-      />
-      <div class="check-type">
-        <p>Recordarme email</p>
-        <Checkbox v-model="credentials.checked" :binary="true" />
-      </div>
+      ></Password>
       <div @click="onSubmit()" class="button-type">
-        <a class="button-primary button">
-          <p>Iniciar sesion</p>
+        <a class="button-primary login-button">
+          <p>Registrate</p>
         </a>
       </div>
       <hr class="separador" />
-      <div class="message">
-        <p>No tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
-        <a href="/register" class="button-primary button">
-          <p>Registrate</p>
+      <div class="login-message">
+        <p>Ya tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
+        <a href="/login" class="button-primary login-button">
+          <p>Inicia Sesión</p>
         </a>
       </div>
       <div v-if="loading" class="loading">
@@ -34,30 +34,34 @@
       </div>
     </section>
     <section class="desktop">
-      <h1 class="font-secundary">¿Cuál es tu email y tu contraseña?</h1>
+      <h1 class="font-secundary">Registrate en FORGETIT y gana dinero!!</h1>
+      <InputText
+        class="input-type"
+        placeholder="Username"
+        v-model="credentials.username"
+      />
       <InputText
         class="input-type"
         placeholder="Email"
-        v-model="credentials.username"
+        v-model="credentials.email"
       />
       <Password
         class="input-type"
         placeholder="Password"
-        v-model="credentials.password"
-        :feedback="false"
-      />
+        v-model="value3"
+      ></Password>
 
       <div class="button-type">
-        <a class="button-primary button">
-          <p @click="onSubmit()">Iniciar sesion</p>
+        <a class="button-primary login-button">
+          <p @click="onSubmit()">Registrate</p>
         </a>
       </div>
       <hr class="separador" />
 
-      <div class="message">
-        <p>No tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
-        <a href="/register" class="button-primary button">
-          <p>Registrate</p>
+      <div class="login-message">
+        <p>Ya tienes cuenta de <a class="link" href="/">FORGETIT?</a></p>
+        <a href="/login" class="button-primary login-button">
+          <p>Inicia Sesión</p>
         </a>
       </div>
       <div v-if="loading" class="loading">
@@ -70,7 +74,6 @@
 <script>
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
-import Checkbox from "primevue/checkbox";
 
 // import { mapActions } from 'vuex';
 import { reactive } from "vue";
@@ -78,13 +81,18 @@ import store from "../store/index";
 import { computed } from "vue";
 
 export default {
-  components: { InputText, Password, Checkbox },
+  components: { InputText, Password },
   setup() {
-    const credentials = reactive({ username: "", password: "", checked: "" });
+    const credentials = reactive({
+      username: "",
+      email: "",
+      password: "",
+      checked: "",
+    });
     const loading = computed(() => store.state.user.loading);
 
     function onSubmit() {
-      store.dispatch("login", credentials);
+      store.dispatch("register", credentials);
     }
 
     return {
@@ -96,24 +104,6 @@ export default {
 };
 </script>
 
-<style>
-.desktop .input-type {
-  padding: 10px !important;
-  margin: 10px !important;
-  display: flex;
-  width: 50%;
-  min-width: 500px;
-  justify-content: flex-start;
-}
-
-.mobile .input-type {
-  margin: 10px 30px;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-</style>
 <style scoped>
 .page {
   height: calc(100vh - 100px);
@@ -123,7 +113,6 @@ export default {
 .page .desktop {
   height: calc(100vh - 100px);
   width: 100%;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -154,17 +143,17 @@ export default {
   margin: 20px 0px;
 }
 
-.page .desktop .button p {
+.page .desktop .login-button p {
   border-color: black;
   cursor: pointer;
   margin: 10px 0px;
 }
 
-.page .desktop .button p:hover {
+.page .desktop .login-button p:hover {
   border-color: black;
 }
 
-.page .desktop .message {
+.page .desktop .login-message {
   display: flex;
   width: 50%;
   min-width: 500px;
@@ -197,14 +186,6 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-
-.page .mobile .check-type {
-  margin: 0px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .page .mobile .separador {
   height: 2px;
   background-color: black;
@@ -213,29 +194,19 @@ export default {
   margin: 30px auto 20px auto;
 }
 
-.page .mobile .button p {
+.page .mobile .login-button p {
   border-color: black;
   cursor: pointer;
   margin: 10px 30px;
   text-align: center;
 }
 
-.page .mobile .button p:hover {
+.page .mobile .login-button p:hover {
   border-color: black;
 }
 
-.page .mobile .message p {
+.page .mobile .login-message p {
   text-align: center;
   font-weight: bold;
-}
-
-@media (max-width: 746px) {
-  .page .desktop {
-    display: none;
-  }
-
-  .page .mobile {
-    display: flex;
-  }
 }
 </style>

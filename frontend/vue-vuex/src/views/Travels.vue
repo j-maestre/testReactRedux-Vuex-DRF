@@ -1,3 +1,3 @@
 <template>
-  <h1>Travels Page</h1>
+  <h1 class="font-primary">Travels Page</h1>
 </template>
