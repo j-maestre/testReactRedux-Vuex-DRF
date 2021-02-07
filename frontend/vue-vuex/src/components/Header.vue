@@ -6,7 +6,7 @@
         <i class="fas fa-car"></i>
       </router-link>
       <router-link active-class="active" to="/">
-        <i class="fas fa-search"></i>
+        <i class="fas fa-home"></i>
       </router-link>
       <router-link active-class="active" to="/message">
         <i class="fas fa-sms"></i>

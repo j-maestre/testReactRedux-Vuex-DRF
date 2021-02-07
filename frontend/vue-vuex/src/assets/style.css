@@ -52,4 +52,9 @@ h1 {
     font-size: 27px;
     margin: 20px 30px;
   }
+
+  .font-primary {
+    font-size: 30px;
+    margin: 20px 30px;
+  }
 }
