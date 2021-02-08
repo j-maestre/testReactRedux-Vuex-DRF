@@ -1,12 +1,10 @@
 from rest_framework import serializers
-# from app.modules.profiles.serializers import ProfileSerializer
+from app.modules.profiles.serializers import ProfileSerializer
 from .models import Travels
 
 class TravelSerializer(serializers.ModelSerializer):
-    # author = ProfileSerializer(read_only=True)
-    travel = serializers.CharField()
-
-   
+    driver = ProfileSerializer(read_only=True) #driver es de tipo profile
+    # travel = serializers.CharField()
 
     class Meta:
         model = Travels
@@ -19,18 +17,15 @@ class TravelSerializer(serializers.ModelSerializer):
             'finishTime',
             'city',               
             'ubication',
-            'postalCode', 
+            'postalCode',
         )
-    def create(self, validated_data):
-        driver = self.context.get('driver', None)
+    def create(self, validated_data):  #Esto lo envia a la bd
+    #data es lo del postman
+    #validated_data tiene el driver
 
-        print('************** create travel ser *******************')
-        # print(validated_data.get('hashtags', []))
-        # hashtags = validated_data.pop('hashtags', [])
-        post = Post.objects.create(driver=driver, **validated_data)
-        # for hashtag in hashtags:
-        #     post.hashtags.add(hashtag)
-        return post
+        driver = self.context.get('driver', None)
+        travel = Travels.objects.create(driver=driver, **validated_data)
+        return travel
     
     # def create(self, validated_data):
     #     author = self.context.get('author', None)

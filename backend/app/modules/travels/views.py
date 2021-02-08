@@ -12,21 +12,10 @@ class ListTravels(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Travels.objects.all()
     serializer_class = TravelSerializer
-    #GET http://0.0.0.0:8000/api/travels/
 
-    print(queryset)
     #GET normal
     def get_queryset(self):
         queryset = self.queryset
-
-        # author = self.request.query_params.get('author', None)
-        # if author is not None:
-        #     queryset = queryset.filter(author__user__username=author)
-
-        # hashtag = self.request.query_params.get('hashtags', None)
-        # if hashtag is not None:
-        #     queryset = queryset.filter(hashtags__hashtag=hashtag)
-
         return queryset.all()  #Devuelve todos los travels, en un futuro aqui podemos aplicar filtros
 
 
@@ -42,29 +31,27 @@ class ListTravels(generics.ListCreateAPIView):
         )
         return self.get_paginated_response(serializer.data)
 
-    #POST http://0.0.0.0:8000/api/travels/    Tienes que estar logueado
+    
+
+class PostTravels(generics.ListCreateAPIView):
+    #POST http://0.0.0.0:8000/api/travels/
+
     def create(self, request):
-        print("POST TRAVELLL")
+        serializer_class = TravelSerializer
         serializer_context = {
-            'driver': 1 #Esto es el usuario logueado, que es quien publica el viaje que es el conductor #request.user.profile,
+            'driver': request.user.profile,
+            'request': request
         }
-        print('************** create post view *******************')
-        print(request.data.get('post', {}))
-
-
-        serializer_data = request.data.get('post', {})
-
-        print("SERIALIZER data: ",serializer_data)
-        
-        serializer = self.serializer_class(
-            data=serializer_data, context=serializer_context
+        serializer_data = request.data.get('travel', {})  # Aqui está el travel de postman. Pilla el json travel, y si no hay, devuelve un json vacio
+        serializer = serializer_class(
+        #data tiene los valores de postman
+        data=serializer_data,
+        #context contiene el usuario que está logueado
+        context=serializer_context 
         )
-        serializer.is_valid(raise_exception=True)
-        print('*********** validated_data ************')
-        print(serializer.validated_data)
 
+        serializer.is_valid(raise_exception=True)#Obligado llamar a .is_valid antes de guardarlo (seguridad++)
         serializer.save()
-        
-        print('*********** data ************')
-        print(serializer.data)
+
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
