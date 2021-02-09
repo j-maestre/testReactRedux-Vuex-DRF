@@ -25,19 +25,27 @@ const actions = {
     userApi
       .login(credentials)
       .then(() => {
-        commit("SET_MSG", {
-          type: true,
-          title: "Authentication success",
-          details: "The login was successful",
-        });
+        commit(
+          "SET_MSG",
+          {
+            type: true,
+            title: "Authentication success",
+            details: "The login was successful",
+          },
+          { root: true }
+        );
         commit("LOGIN", credentials);
       })
       .catch(() =>
-        commit("SET_MSG", {
-          type: false,
-          title: "Authentication failed",
-          details: "The login was completed incorrectly",
-        })
+        commit(
+          "SET_MSG",
+          {
+            type: false,
+            title: "Authentication failed",
+            details: "The login was completed incorrectly",
+          },
+          { root: true }
+        )
       );
 
     commit("SET_LOADER", false);
@@ -52,11 +60,15 @@ const actions = {
         userApi
           .login(credentials)
           .then(() => {
-            commit("SET_MSG", {
-              type: true,
-              title: "Registation success",
-              details: "The register was successful",
-            });
+            commit(
+              "SET_MSG",
+              {
+                type: true,
+                title: "Registation success",
+                details: "The register was successful",
+              },
+              { root: true }
+            );
             commit("LOGIN", credentials);
           })
           .catch(() =>
@@ -68,11 +80,15 @@ const actions = {
           );
       })
       .catch(() =>
-        commit("SET_MSG", {
-          type: false,
-          title: "Registation failed",
-          details: "The register was completed incorrectly",
-        })
+        commit(
+          "SET_MSG",
+          {
+            type: false,
+            title: "Registation failed",
+            details: "The register was completed incorrectly",
+          },
+          { root: true }
+        )
       );
 
     commit("SET_LOADER", false);
@@ -81,4 +97,4 @@ const actions = {
 
 const getters = {};
 
-export default { state, mutations, getters, actions };
+export default { namespaced: true, state, mutations, getters, actions };

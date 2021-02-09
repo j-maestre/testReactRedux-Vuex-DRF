@@ -12,18 +12,18 @@ const mutations = {
 };
 const getters = {};
 const actions = {};
+const modules = {
+  user,
+  movement,
+};
 
 const store = createStore({
+  namespaced: true,
   state,
   mutations,
   getters,
   actions,
   modules,
 });
-
-export const modules = {
-  user,
-  movement,
-};
 
 export default store;
