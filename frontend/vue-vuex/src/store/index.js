@@ -12,10 +12,6 @@ const mutations = {
 };
 const getters = {};
 const actions = {};
-const modules = {
-  user,
-  movement,
-};
 
 const store = createStore({
   state,
@@ -24,5 +20,10 @@ const store = createStore({
   actions,
   modules,
 });
+
+export const modules = {
+  user,
+  movement,
+};
 
 export default store;

@@ -74,17 +74,18 @@ import Checkbox from "primevue/checkbox";
 
 // import { mapActions } from 'vuex';
 import { reactive } from "vue";
-import store from "../store/index";
-import { computed } from "vue";
+import store, { modules } from "../store/index";
+// import { computed } from "vue";
 
 export default {
   components: { InputText, Password, Checkbox },
   setup() {
     const credentials = reactive({ username: "", password: "", checked: "" });
-    const loading = computed(() => store.state.user.loading);
+    // const loading = computed(() => store.state.user.loading);
 
+    const loading = false;
     function onSubmit() {
-      store.dispatch("login", credentials);
+      store.dispatch(modules.user.actions.login(credentials));
     }
 
     return {
