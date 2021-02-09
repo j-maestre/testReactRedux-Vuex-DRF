@@ -1,7 +1,7 @@
 from django.db import models
 
 class Travels(models.Model):
-    slug = models.SlugField(db_index=True, max_length=255, unique=True, default = "")
+    # slug = models.SlugField(db_index=True, max_length=255, unique=True, default = "")
     driver = models.ForeignKey(
         'profiles.Profile', on_delete=models.CASCADE, related_name='travels'
     )
