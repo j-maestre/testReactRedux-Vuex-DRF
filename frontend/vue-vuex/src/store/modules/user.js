@@ -49,45 +49,12 @@ const actions = {
     commit("SET_LOADER", false);
   },
 
-  register({ commit }, credentials) {
+  async register({ commit }, credentials) {
     commit("SET_LOADER", true);
 
-    userApi
-      .register(credentials)
-      .then(() => {
-        userApi
-          .login(credentials)
-          .then(() => {
-            commit(
-              "SET_MSG",
-              {
-                type: true,
-                title: "Registation success",
-                details: "The register was successful",
-              },
-              { root: true }
-            );
-            commit("LOGIN", credentials);
-          })
-          .catch(() =>
-            commit("SET_MSG", {
-              type: false,
-              title: "Registation failed",
-              details: "The register was completed incorrectly",
-            })
-          );
-      })
-      .catch(() =>
-        commit(
-          "SET_MSG",
-          {
-            type: false,
-            title: "Registation failed",
-            details: "The register was completed incorrectly",
-          },
-          { root: true }
-        )
-      );
+    let response = await userApi.register(credentials);
+
+    console.log(response);
 
     commit("SET_LOADER", false);
   },

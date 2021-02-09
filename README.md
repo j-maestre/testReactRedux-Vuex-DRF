@@ -1,41 +1,71 @@
-Tabla 1: users
-id - Serial (PK)
-username - Text
-email - Text
-is_active - boolean
-is_staff - boolean
+# testReactRedux-Vuex-DRF
 
-Tabla 2: profile
-id - Serial (PK)
-bio - Text
-image - UrlField
+## Get Started.
 
-Tabla 3: travels
-id - Serial (PK)
-driver - User (FK)
-num_passengers - Integer
-date - Date
-start_time - Time
-finish_time - Time
-city - Text
-ubication - Text
-street - Text
-postalcode - Integer
-createdAt - DateTime
+## DataBase information.
 
-Tabla 4: passengers
-id - Serial (PK)
-travel_id - Integer (AK)
-user_id - Integer (AK)
+- users
 
-Tabla 5: categories
-id - Serial (PK)
-name - Text
-image - Text
+  - id_profile - Serial (PK)
+  - username - Text
+  - email - Text
+  - createdAt - DateTime
+  - is_active - boolean
+  - is_staff - boolean
 
-Mejoras
+- profile
 
-1. Store modularizado
-2. Toaster implementado a nivel de aplicacion (store global, no por modulo)
-3. Responsive, version mobile and desktop.
-4. Componente de search con autocomplete.
+  - id_profile - Serial (PK)
+  - bio - Text
+  - image - UrlField
+
+- travels
+
+  - id_travel - Serial (PK)
+  - user_id - User (FK)
+  - status_id - Status (FK)
+  - date - Date
+  - origin_location - Text
+  - destination_location - Text
+  - start_time - Time
+  - finish_time - Time
+  - precio - Float
+  - createdAt - DateTime
+
+- status
+
+  - id_status - Serial (PK)
+  - name - Text
+  - closed - Boolean
+
+- shipping
+
+  - id_shipping - Serial (PK)
+  - travel_id - Travel (FK)
+  - user_id - User (FK)
+  - category_id Category (FK)
+  - weight - Integer
+  - height - Integer
+  - width - Integer
+  - depth - Integer
+  - createdAt - DateTime
+
+- categories
+
+  - id_category - Serial (PK)
+  - name - Text
+  - image - Text
+
+- comments
+
+  - id_comment - Serial (PK)
+  - user_id - User (FK)
+  - travel_id - Travel (FK)
+  - message - Text
+
+### Mejoras
+
+1. Store modularized with namespaced, using map ...
+2. Toaster implemented at the application level (global store, not per module).
+3. Responsive, mobile and desktop version in all components and views (control from App.vue).
+4. Search component with autocomplete.

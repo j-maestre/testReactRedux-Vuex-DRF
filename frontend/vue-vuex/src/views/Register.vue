@@ -2,20 +2,12 @@
   <div class="page">
     <section class="mobile">
       <h1 class="font-secundary">Registrate en FORGETIT y gana dinero!!</h1>
-      <InputText
-        class="input-type"
-        placeholder="Username"
-        v-model="credentials.username"
-      />
-      <InputText
-        class="input-type"
-        placeholder="Email"
-        v-model="credentials.email"
-      />
+      <InputText class="input-type" placeholder="Username" v-model="username" />
+      <InputText class="input-type" placeholder="Email" v-model="email" />
       <Password
         class="input-type"
         placeholder="Password"
-        v-model="credentials.password"
+        v-model="password"
       ></Password>
       <div @click="onSubmit()" class="button-type">
         <a class="button-primary login-button">
@@ -35,20 +27,12 @@
     </section>
     <section class="desktop">
       <h1 class="font-secundary">Registrate en FORGETIT y gana dinero!!</h1>
-      <InputText
-        class="input-type"
-        placeholder="Username"
-        v-model="credentials.username"
-      />
-      <InputText
-        class="input-type"
-        placeholder="Email"
-        v-model="credentials.email"
-      />
+      <InputText class="input-type" placeholder="Username" v-model="username" />
+      <InputText class="input-type" placeholder="Email" v-model="email" />
       <Password
         class="input-type"
         placeholder="Password"
-        v-model="value3"
+        v-model="password"
       ></Password>
 
       <div class="button-type">
@@ -74,32 +58,31 @@
 <script>
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
-
-// import { mapActions } from 'vuex';
-import { reactive } from "vue";
-import store from "../store/index";
-import { computed } from "vue";
+import { mapActions } from "vuex";
 
 export default {
   components: { InputText, Password },
-  setup() {
-    const credentials = reactive({
+  data() {
+    return {
       username: "",
       email: "",
       password: "",
-      checked: "",
-    });
-    const loading = computed(() => store.state.user.loading);
-
-    function onSubmit() {
-      store.dispatch("register", credentials);
-    }
-
-    return {
-      credentials,
-      onSubmit,
-      loading,
+      checked: true,
+      loading: false,
     };
+  },
+  methods: {
+    ...mapActions({
+      register: "user/register",
+    }),
+    onSubmit() {
+      this.register({
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        checked: this.checked,
+      });
+    },
   },
 };
 </script>
