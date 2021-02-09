@@ -15,7 +15,7 @@
           class="category"
           v-for="category in render_categories"
           :key="category.id"
-          @click="setCategory(category.id)"
+          @click="onCategory(category.id)"
         >
           <img :src="category.img" alt="" />
           <p>{{ category.name }}</p>
@@ -31,7 +31,7 @@
 
 <script>
 import AutoComplete from "../components/AutoComplete";
-import store from "../store/index";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -82,9 +82,11 @@ export default {
     };
   },
   methods: {
-    setCategory(id) {
-      console.log("prueba");
-      store.commit("SET_CATEGORY", id);
+    ...mapActions({
+      setCategory: "shipping/setCategory",
+    }),
+    onCategory(idcatgeory) {
+      this.setCategory(idcatgeory);
     },
   },
   mounted() {

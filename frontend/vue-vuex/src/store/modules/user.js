@@ -5,7 +5,6 @@ const state = {
   loading: false,
   user: {},
 };
-
 const mutations = {
   LOGIN(state, payload) {
     state.token = payload;
@@ -17,7 +16,6 @@ const mutations = {
     state.user = payload;
   },
 };
-
 const actions = {
   login({ commit }, credentials) {
     commit("SET_LOADER", true);
@@ -94,7 +92,6 @@ const actions = {
     commit("SET_LOADER", false);
   },
 };
-
 const getters = {};
 
 export default { namespaced: true, state, mutations, getters, actions };

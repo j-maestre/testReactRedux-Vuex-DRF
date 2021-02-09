@@ -1,16 +1,14 @@
 const state = {
-  category: {},
+  category: null,
 };
-
 const mutations = {
   SET_CATEGORY(state, payload) {
     state.category = payload;
   },
 };
-
 const actions = {
-  login({ commit }) {
-    commit("SET_CATEGORY", true);
+  setCategory({ commit }, idcategory) {
+    commit("SET_CATEGORY", idcategory);
   },
 };
 const getters = {};
