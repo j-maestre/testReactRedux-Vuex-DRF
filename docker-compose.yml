@@ -19,8 +19,7 @@ services:
     build: backend/.
     container_name: "Django_container"
     command: bash -c "export API_AUTHENTICATION="False" && python3 manage.py makemigrations && python3 manage.py migrate && python manage.py runserver 0.0.0.0:8000 && python3 manage.py collectstatic --noinput"
-    # run: sudo docker exec -it Django_container sh; python3 manage.py makemigrations; python3 manage.py migrate
-    # command: bash -c "export API_AUTHENTICATION="False" && python3 manage.py makemigrations && python3 manage.py migrate"
+    # command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
     volumes:

@@ -4,13 +4,13 @@ from .models import Travels
 
 class TravelSerializer(serializers.ModelSerializer):
     driver = ProfileSerializer(read_only=True) #driver es de tipo profile
-    # slug = serializers.SlugField(required=False)
+    slug = serializers.SlugField(required=False)
     # travel = serializers.CharField()
 
     class Meta:
         model = Travels
         fields = (
-            # 'slug',
+            'slug',
             'driver',
             'numPassengers',
             'date',
