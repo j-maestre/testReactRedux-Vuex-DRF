@@ -20,7 +20,7 @@ class ListTravels(generics.ListCreateAPIView):
 
 
     # PAGINATE
-    def get(self, request):
+    def list(self, request):
         serializer_context = {'request': request}
         page = self.paginate_queryset(self.get_queryset())
 
@@ -51,7 +51,7 @@ class PostTravels(generics.ListCreateAPIView):
         )
 
         serializer.is_valid(raise_exception=True)#Obligado llamar a .is_valid antes de guardarlo (seguridad++)
-        serializer.save()
+        serializer.save() #Antes de hacer el save, signals lo pilla y le añade el slug
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     

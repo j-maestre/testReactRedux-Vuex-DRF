@@ -5,5 +5,5 @@ export function list() {
 }
 
 export function create(data) {
-  return axios.post("http://localhost:8000/api/travels/create/");
+  return axios.post("http://localhost:8000/api/travels/create/",data);
 }
