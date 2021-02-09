@@ -20,7 +20,7 @@ class ListTravels(generics.ListCreateAPIView):
 
 
     # PAGINATE
-    def get(self, request):
+    def list(self, request):
         serializer_context = {'request': request}
         page = self.paginate_queryset(self.get_queryset())
 
