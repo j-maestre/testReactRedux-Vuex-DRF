@@ -8,7 +8,7 @@ from .serializers import TravelSerializer
 import json
 
 class ListTravels(generics.ListCreateAPIView):
-    print("OLE LOS CANELONES LIST TRAVELSSSSS")
+    # print("OLE LOS CANELONES LIST TRAVELSSSSS")
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Travels.objects.all()
     serializer_class = TravelSerializer
@@ -55,3 +55,40 @@ class PostTravels(generics.ListCreateAPIView):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
+class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Travels.objects.all()
+    serializer_class = TravelSerializer
+
+    # print("*************dentro del retrieve*************")
+    # print("queryseet-> ",queryset.filter(slug="ontinyent-3vbudf"))    
+
+    def retrieve(self, request, travel_slug):
+        serializer_context = {'request': request}
+        try:
+            serializer_instance = self.queryset.get(
+                slug=travel_slug,
+            )
+
+        except Travels.DoesNotExist:
+            raise NotFound('A travel with this slug does not exist.')
+
+        serializer = self.serializer_class(
+            serializer_instance,
+            context=serializer_context
+        )
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    #Eliminar el travel estando logueado y poniendo el slug del travel
+    def destroy(self, request, travel_slug=None):
+        print("*************DESTROY*******************")
+        print("USER -> ", self.request.user)
+        print(Travels.objects.all())
+        try:
+            travel = Travels.objects.get(
+                slug=travel_slug, 
+                driver=self.request.user)
+        except Travels.DoesNotExist:
+            raise NotFound('An travel with this slug does not exist.')
+        post.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)

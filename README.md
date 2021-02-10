@@ -63,9 +63,16 @@
   - travel_id - Travel (FK)
   - message - Text
 
-### Mejoras
+## Mejoras
+
+### Frontend
 
 1. Store modularized with namespaced, using map ...
 2. Toaster implemented at the application level (global store, not per module).
 3. Responsive, mobile and desktop version in all components and views (control from App.vue).
 4. Search component with autocomplete.
+
+
+### Backend
+
+1. Relationship 1 to many profile -> travels 
