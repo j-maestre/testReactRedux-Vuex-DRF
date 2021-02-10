@@ -55,3 +55,26 @@ class PostTravels(generics.ListCreateAPIView):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
+class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
+    # permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Travels.objects.all()
+    serializer_class = TravelSerializer
+
+    print("*************dentro del retrieve*************")
+    # print("queryseet-> ",queryset.filter(slug="ontinyent-3vbudf"))    
+
+    def retrieve(self, request, travel_slug):
+        serializer_context = {'request': request}
+        try:
+            serializer_instance = self.queryset.get(
+                slug=travel_slug,
+            )
+
+        except Travels.DoesNotExist:
+            raise NotFound('A travel with this slug does not exist.')
+
+        serializer = self.serializer_class(
+            serializer_instance,
+            context=serializer_context
+        )
+        return Response(serializer.data, status=status.HTTP_200_OK)
