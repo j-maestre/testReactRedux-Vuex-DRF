@@ -29,7 +29,7 @@
   - destination_location - Text
   - start_time - Time
   - finish_time - Time
-  - precio - Float
+  - price - Float
   - createdAt - DateTime
 
 - status

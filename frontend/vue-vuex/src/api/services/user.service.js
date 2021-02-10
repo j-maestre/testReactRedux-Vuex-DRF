@@ -8,10 +8,17 @@ export function login(user) {
   // "https://api.coindesk.com/v1/bpi/currentprice.json"
 }
 
-export function register(credentials) {
+
+
+export function register() {
   const user = { user: credentials };
-  console.log("Vamos al register ole los canelones")
-  return axios
-    .post("http://localhost:8000/api/users/", user)
-    .then((response) => response);
+  let http = axios.create({
+    baseURL: "http://localhost:8000/api",
+  });
+
+  // return http.get("/travels");
+
+  return http.post("users", user)
+  .then((response) => response);
+
 }
