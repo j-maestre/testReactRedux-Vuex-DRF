@@ -25,7 +25,7 @@ SECRET_KEY = 'x20259cecwnbuuvokt20!k74nh(p(tuz_g00fkanj)733(%hh+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["0.0.0.0","localhost"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'app.core',
     'app.modules.travels',
     'app.modules.categories',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -80,7 +82,6 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-print("ANTES de la database------")
 
 DATABASES = {
     'default': {
@@ -93,7 +94,6 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-print(DATABASES)
 
 
 # Password validation
@@ -136,7 +136,9 @@ STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = (
     'http://0.0.0.0:4000',
-    'http://localhost:4000'
+    'http://localhost:4000',
+    'https://0.0.0.0:4000',
+    'https://localhost:4000',
 )
 
 AUTH_USER_MODEL = 'authentication.User'

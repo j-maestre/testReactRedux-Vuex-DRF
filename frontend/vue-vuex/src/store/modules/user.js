@@ -23,6 +23,7 @@ const actions = {
     userApi
       .login(credentials)
       .then(() => {
+        console.log("LOGIN??? ", credentials)
         commit(
           "SET_MSG",
           {
