@@ -90,5 +90,5 @@ class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
                 driver=self.request.user)
         except Travels.DoesNotExist:
             raise NotFound('An travel with this slug does not exist.')
-        post.delete()
+        travel.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)

@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^api/', include(('app.modules.travels.urls','travels'), namespace='travels')),
+    url(r'^api/', include(('app.modules.categories.urls','categories'), namespace='categories')),
 
     url(r'^api/', include(('app.modules.authentication.urls','authentication'), namespace='authentication')),
     url(r'^api/', include(('app.modules.profiles.urls','profiles'), namespace='profiles')),
