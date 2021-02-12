@@ -12,24 +12,26 @@ import Header from "./components/Header";
 import TitleMobile from "./components/TitleMobile";
 import Toast from "primevue/toast";
 import { computed } from "vue";
-import store from "./store/index";
+import { useStore } from "vuex";
 
 export default {
   name: "App",
   setup() {
-    const store_msg = computed(() => store.state.msg);
+    const store = useStore();
+    const state_msg = computed(() => store.state.msg);
+    const state = computed(() => store.state);
+
+    // Comprobamos que el token es valido.
+    // store.dispatch("user/checkout");
 
     return {
-      store_msg,
+      store,
+      state_msg,
+      state,
     };
   },
-  components: {
-    Header,
-    Toast,
-    TitleMobile,
-  },
   watch: {
-    store_msg: function(value) {
+    state_msg(value) {
       // Si es true, mensaje success
       let type = value.type ? "success" : "error";
 
@@ -41,6 +43,11 @@ export default {
         life: 3000,
       });
     },
+  },
+  components: {
+    Header,
+    Toast,
+    TitleMobile,
   },
 };
 </script>

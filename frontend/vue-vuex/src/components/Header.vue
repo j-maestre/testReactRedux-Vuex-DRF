@@ -31,17 +31,62 @@
           <i class="far fa-address-book"></i>
           <p>Contact</p>
         </router-link>
-        <router-link active-class="active" class="button-primary" to="/login">
+        <router-link
+          v-if="!currentUser.username"
+          active-class="active"
+          class="button-primary"
+          to="/login"
+        >
           <p>Iniciar Sesion</p>
         </router-link>
+        <div v-if="currentUser.username" class="user-logged">
+          <img src="https://thispersondoesnotexist.com/image" alt="profile" />
+          <strong>@{{ currentUser.username }}</strong>
+          <ul>
+            <router-link class="li" active-class="active" to="/profile">
+              <i class="fas fa-user"></i>
+              <p>Perfil</p>
+            </router-link>
+            <router-link class="li" active-class="active" to="/travels">
+              <i class="fas fa-user"></i>
+              <p>Mis viajes</p>
+            </router-link>
+            <router-link class="li" active-class="active" to="/shipping">
+              <i class="fas fa-user"></i>
+              <p>Mis envios</p>
+            </router-link>
+            <router-link class="li" active-class="active" to="/settings">
+              <i class="fas fa-user"></i>
+              <p>Ajustes</p>
+            </router-link>
+            <li @click="logout()" class="li" active-class="active" to="/logout">
+              <i class="fas fa-user"></i>
+              <p>Cerrar sesion</p>
+            </li>
+          </ul>
+        </div>
       </nav>
     </section>
   </div>
 </template>
 
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
+
 export default {
   name: "Header",
+  setup() {
+    const store = useStore();
+    const currentUser = computed(() => store.state.user.user);
+
+    const logout = () => store.dispatch("user/logout");
+
+    return {
+      logout,
+      currentUser,
+    };
+  },
 };
 </script>
 
@@ -130,6 +175,69 @@ export default {
 
 .desktop .menu a:hover,
 .desktop .menu a.active {
+  color: #faff8a;
+}
+
+.desktop .menu .user-logged {
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 170px;
+  padding: 10px 30px 10px 0px;
+  margin: 10px 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.desktop .menu .user-logged strong {
+  margin-left: 10px;
+}
+
+.desktop .menu .user-logged:hover strong {
+  color: #faff8a;
+}
+
+.desktop .menu .user-logged img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.desktop .menu .user-logged ul {
+  position: absolute;
+  top: 64px;
+  right: -30px;
+  background: black;
+  list-style: none;
+  width: 215px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 25px 7px 25px;
+  display: none;
+}
+
+.desktop .menu .user-logged:hover ul,
+.desktop .menu .user-logged ul:hover {
+  display: flex;
+}
+
+.desktop .menu .user-logged ul .li {
+  margin: 17px 0px;
+  padding: 0px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.desktop .menu .user-logged ul .li p {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.desktop .menu .user-logged ul .li:hover {
   color: #faff8a;
 }
 

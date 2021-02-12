@@ -1,24 +1,13 @@
-import axios from "axios";
+import { http } from "../config";
 
-export function login(user) {
-  console.log("LOGIN OLE LOS CANELONES")
-  console.log("USER BUENO")
-  console.log(user)
-  return axios.post("http://localhost:8000/api/users/login",user).then((response) => response);
-  // "https://api.coindesk.com/v1/bpi/currentprice.json"
+export function login(credentials) {
+  return http.post("users/login", { user: credentials });
 }
 
+export function register(credentials) {
+  return http.post("users/", { user: credentials });
+}
 
-
-export function register() {
-  const user = { user: credentials };
-  let http = axios.create({
-    baseURL: "http://localhost:8000/api",
-  });
-
-  // return http.get("/travels");
-
-  return http.post("users", user)
-  .then((response) => response);
-
+export function checkout(token) {
+  return http.post("users/", { user: token });
 }

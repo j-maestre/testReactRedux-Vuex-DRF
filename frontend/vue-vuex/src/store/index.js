@@ -10,7 +10,14 @@ const mutations = {
     state.msg = payload;
   },
 };
-const getters = {};
+const getters = {
+  state_msg: (state) => {
+    return state.msg;
+  },
+  state: (state) => {
+    return state;
+  },
+};
 const actions = {};
 const modules = {
   user,

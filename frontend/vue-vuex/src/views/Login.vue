@@ -2,7 +2,7 @@
   <div class="page">
     <section class="mobile">
       <h1 class="font-secundary">¿Cuál es tu email y tu contraseña?</h1>
-      <InputText class="input-type" placeholder="Email" v-model="username" />
+      <InputText class="input-type" placeholder="Email" v-model="email" />
       <Password
         class="input-type"
         placeholder="Password"
@@ -31,7 +31,7 @@
     </section>
     <section class="desktop">
       <h1 class="font-secundary">¿Cuál es tu email y tu contraseña?</h1>
-      <InputText class="input-type" placeholder="Email" v-model="username" />
+      <InputText class="input-type" placeholder="Email" v-model="email" />
       <Password
         class="input-type"
         placeholder="Password"
@@ -65,17 +65,14 @@ import Password from "primevue/password";
 import Checkbox from "primevue/checkbox";
 
 import { mapActions } from "vuex";
-// import { reactive } from "vue";
-// import store from "../store/index";
-// import { computed } from "vue";
 
 export default {
   components: { InputText, Password, Checkbox },
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
-      checked: false,
+      checked: true,
       loading: false,
     };
   },
@@ -83,12 +80,15 @@ export default {
     ...mapActions({
       login: "user/login",
     }),
-    onSubmit() {
-      this.login({
-        username: this.username,
-        password: this.password,
+    async onSubmit() {
+      let response = await this.login({
+        email: this.email,
         checked: this.checked,
+        password: this.password,
       });
+
+      // Si el login es success.
+      response ? this.$router.push({ name: "Search" }) : "";
     },
   },
 };
@@ -114,7 +114,6 @@ export default {
 </style>
 <style scoped>
 .page {
-  height: calc(100vh - 100px);
   width: 100%;
 }
 
@@ -186,6 +185,7 @@ export default {
 .page .mobile {
   display: none;
   flex-direction: column;
+  padding-bottom: 70px;
 }
 
 .page .mobile .input-type {
