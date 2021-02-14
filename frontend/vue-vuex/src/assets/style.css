@@ -30,6 +30,12 @@ h1 {
   text-align: center;
 }
 
+.font-tertiary {
+  color: #000000;
+  font-size: 40px;
+  margin: 20px 0px;
+}
+
 .button-primary p {
   border: 2px solid white;
   padding: 10px;
@@ -59,6 +65,14 @@ h1 {
   .font-primary {
     font-size: 30px;
     margin: 20px 30px;
+    text-decoration: underline;
+    text-decoration-color: #faff8a;
+    border-bottom-width: 5px;
+  }
+
+  .font-tertiary {
+    font-size: 20px;
+    margin: 10px 30px;
     text-decoration: underline;
     text-decoration-color: #faff8a;
     border-bottom-width: 5px;

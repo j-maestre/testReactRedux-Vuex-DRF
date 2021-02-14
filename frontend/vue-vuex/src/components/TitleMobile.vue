@@ -4,7 +4,7 @@
     <section class="mobile">
       <i
         v-if="history > 1"
-        @click="$router.go(-1)"
+        @click="changePage()"
         class="fas fa-arrow-circle-left back"
       ></i>
       <h2>FORGETIT</h2>
@@ -16,12 +16,30 @@
 </template>
 
 <script>
+// Vue
+import { computed } from "vue";
+import { useStore } from "vuex";
+
 export default {
   name: "TitleMobile",
   setup() {
+    const store = useStore();
+    const shipping = computed(() => store.state.shipping);
+
     let history = window.history.length;
     console.log(history);
-    return { history };
+    return { history, shipping };
+  },
+  methods: {
+    changePage() {
+      if (this.shipping.filters != null) {
+        this.shipping.filters = null;
+      } else if (this.shipping.category != null) {
+        this.shipping.category = null;
+      } else {
+        this.$router.go(-1);
+      }
+    },
   },
 };
 </script>
@@ -36,6 +54,9 @@ export default {
   justify-content: center;
   align-items: center;
   position: relative;
+  position: fixed;
+  background-color: white;
+  z-index: 999;
 }
 
 .mobile h2 {

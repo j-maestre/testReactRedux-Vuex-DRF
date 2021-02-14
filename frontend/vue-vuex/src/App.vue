@@ -2,6 +2,10 @@
   <div id="app">
     <TitleMobile />
     <Header />
+    <br />
+    <br />
+    <br />
+    <!-- {{ state }} -->
     <router-view />
     <Toast />
   </div>
@@ -60,7 +64,6 @@ export default {
 .desktop {
   display: flex;
 }
-
 @media (max-width: 746px) {
   .desktop {
     display: none !important;

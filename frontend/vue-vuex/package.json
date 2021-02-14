@@ -20,7 +20,9 @@
     "run": "^1.4.0",
     "serve": "^11.3.2",
     "vue": "^3.0.0",
+    "vue-google-autocomplete": "^1.1.0",
     "vue-router": "^4.0.3",
+    "vue3-datepicker": "^0.2.4",
     "vuex": "^4.0.0-alpha.1"
   },
   "devDependencies": {
