@@ -23,8 +23,9 @@
       </div>
     </section>
     <section class="desktop">
-      <h1 class="font-primary">¡OH NO, SE ME HAN OLVIDADO LAS LLAVES!</h1>
-      <p>All travels</p>
+      <div class="image-vector">
+        <h1 class="font-secundary">¡OH NO, SE ME HAN OLVIDADO LAS LLAVES!</h1>
+      </div>
     </section>
   </div>
 </template>
@@ -117,21 +118,22 @@ export default {
 <style scoped>
 .page .mobile {
   flex-direction: column;
+  padding-bottom: 70px;
 }
 
-.categories {
+.page .mobile .categories {
   display: flex;
   flex-wrap: wrap;
   padding: 20px 30px;
   justify-content: space-between;
 }
 
-.category {
+.page .mobile .category {
   position: relative;
   margin: 5px 0px;
 }
 
-.category p {
+.page .mobile .category p {
   position: absolute;
   top: 0;
   font-weight: bold;
@@ -145,10 +147,23 @@ export default {
   align-items: center;
 }
 
-.category img {
+.page .mobile .category img {
   width: calc(50vw - 40px);
   height: calc(50vw - 40px);
   border-radius: 10%;
   object-fit: cover; /* or object-fit: contain; */
+}
+
+.page .desktop {
+  flex-direction: column;
+  padding-bottom: 70px;
+}
+
+.page .desktop .image-vector {
+  background-image: url(/img/fondo_home_sustituto.5e478b07.png);
+  height: 400px;
+  width: 100vw;
+  background-size: cover;
+  background-position-y: center;
 }
 </style>
