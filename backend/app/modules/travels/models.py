@@ -1,4 +1,5 @@
 from django.db import models
+from app.core.models import TimestampedModel
 
 class Travels(models.Model):
     slug = models.SlugField(db_index=True, max_length=255, unique=True, primary_key = True)
@@ -19,6 +20,23 @@ class Travels(models.Model):
 
 def __str__(self):
     return self.id
+
+
+
+class Valoration(TimestampedModel):
+    slug = models.SlugField(db_index=True, max_length=255, unique=True, primary_key = True)
+    body = models.TextField()
+    travel = models.ForeignKey(
+        'travels.Travels', related_name='valorations', on_delete=models.CASCADE 
+    )
+
+    author = models.ForeignKey(
+        'profiles.Profile', related_name='valorations', on_delete=models.CASCADE
+    )
+
+ 
+
+    
 #     # @property
 #     # def description(self):
 #     #     return "%s - %s" % (self.name, self.professionalInformation.profession)

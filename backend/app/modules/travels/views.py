@@ -3,8 +3,9 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import (AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated, IsAdminUser,)
-from .models import Travels
-from .serializers import TravelSerializer
+from .models import Travels, Valoration
+from .serializers import TravelSerializer, ValorationSerializer
+from .renderers import ValorationJSONRenderer
 import json
 
 class ListTravels(generics.ListCreateAPIView):
@@ -92,3 +93,38 @@ class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
             raise NotFound('An travel with this slug does not exist.')
         travel.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+# class ValorationsListCreateAPIView(generics.ListCreateAPIView):
+#     lookup_field = 'id'
+#     lookup_url_kwarg = 'id'
+#     permission_classes = (IsAuthenticatedOrReadOnly,)
+#     queryset = Valoration.objects.select_related(
+#         'travels', 'travels__driver', 'travels__driver__user',
+#         'driver', 'driver__user'
+#     )
+#     renderer_classes = (ValorationJSONRenderer,)
+#     serializer_class = ValorationSerializer
+
+#     def filter_queryset(self, queryset):
+#         # The built-in list function calls `filter_queryset`. Since we only
+#         # want comments for a specific article, this is a good place to do
+#         # that filtering.
+#         filters = {self.lookup_field: self.kwargs[self.lookup_url_kwarg]}
+
+#         return queryset.filter(**filters)
+
+#     def create(self, request, article_slug=None):
+#         data = request.data.get('valoration', {})
+#         context = {'author': request.user.profile}
+
+#         try:
+#             context['valoration'] = Article.objects.get(slug=article_slug)
+#         except Article.DoesNotExist:
+#             raise NotFound('An travel with this slug does not exist.')
+
+#         serializer = self.serializer_class(data=data, context=context)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+

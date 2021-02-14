@@ -5,6 +5,7 @@ COPY requirements.txt /code/
 RUN pip3 install -r requirements.txt
 RUN pip3 install djangorestframework
 COPY . /code/
+# RUN export API_AUTHENTICATION="False" && python3 manage.py makemigrations && python3 manage.py migrate && python manage.py runserver 0.0.0.0:8000 && python3 manage.py collectstatic --noinput
 
 # FROM python:3.6-alpine
 # ENV PYTHONUNBUFFERED 1

@@ -88,8 +88,3 @@ class CategoriesViewSetAdmin(generics.RetrieveUpdateDestroyAPIView): #viewsets.M
             raise NotFound('An category with this id does not exist.')
         category.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-    
