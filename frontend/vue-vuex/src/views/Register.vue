@@ -75,13 +75,16 @@ export default {
     ...mapActions({
       register: "user/register",
     }),
-    onSubmit() {
-      this.register({
+    async onSubmit() {
+      let response = await this.register({
         username: this.username,
         email: this.email,
         password: this.password,
         checked: this.checked,
       });
+
+      // Si el login es success.
+      response ? this.$router.push({ name: "Search" }) : "";
     },
   },
 };
@@ -89,12 +92,11 @@ export default {
 
 <style scoped>
 .page {
-  height: calc(100vh - 100px);
   width: 100%;
 }
 
 .page .desktop {
-  height: calc(100vh - 100px);
+  height: 100vh;
   width: 100%;
   flex-direction: column;
   align-items: center;
@@ -160,6 +162,7 @@ export default {
 .page .mobile {
   display: none;
   flex-direction: column;
+  padding-bottom: 70px;
 }
 
 .page .mobile .input-type {

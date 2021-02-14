@@ -71,8 +71,14 @@
 2. Toaster implemented at the application level (global store, not per module).
 3. Responsive, mobile and desktop version in all components and views (control from App.vue).
 4. Search component with autocomplete.
-
+5. DRF + Vue -> home, list, details, ....
+6. Async y await con las llamadas api.
+7. Syntax watch, computed...
+8. Emit en autocomplete component.
 
 ### Backend
 
-1. Relationship 1 to many profile -> travels 
+1. Relationship 1 to many profile -> travels
+2. DRF + Postman -> home, list, details, ....
+3. Register/Login/JWT/Header
+4. exceptions.py
