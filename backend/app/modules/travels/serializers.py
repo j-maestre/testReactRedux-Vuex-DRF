@@ -1,37 +1,8 @@
 from rest_framework import serializers
 from app.modules.profiles.serializers import ProfileSerializer
+# from app.modules.travels.serializers import ValorationSerializer
 from .models import Travels, Valoration
 from .relations import ValorationRelatedField
-
-
-class TravelSerializer(serializers.ModelSerializer):
-    driver = ProfileSerializer(read_only=True) #driver es de tipo profile
-    slug = serializers.SlugField(required=False)
-    # valorationsList = ValorationRelatedField(many=True, required=False, source='valorations')
-    # travel = serializers.CharField()
-
-    class Meta:
-        model = Travels
-        fields = (
-            'slug',
-            'driver',
-            'numPassengers',
-            'date',
-            'startTime',
-            'finishTime',
-            'city',               
-            'ubication',
-            'postalCode',
-            # 'valorationsList',
-            # 'valorations',
-        )
-    def create(self, validated_data):  #Esto lo envia a la bd
-        #data es lo del postman
-        #validated_data tiene el driver
-        driver = self.context.get('driver', None)
-        travel = Travels.objects.create(driver=driver, **validated_data)
-        return travel
-
 
 #Valorations (comentarios...)
 class ValorationSerializer(serializers.ModelSerializer):
@@ -49,7 +20,6 @@ class ValorationSerializer(serializers.ModelSerializer):
             'body',
             'createdAt',
             'travel_slug',
-            # 'updatedAt',
         )
 
     def create(self, validated_data):
@@ -65,4 +35,34 @@ class ValorationSerializer(serializers.ModelSerializer):
 
     # def get_updated_at(self, instance):
     #     return instance.updated_at.isoformat()
+
+
+class TravelSerializer(serializers.ModelSerializer):
+    driver = ProfileSerializer(read_only=True) #driver es de tipo profile
+    slug = serializers.SlugField(required=False)
+    valorations = ValorationSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Travels
+        fields = (
+            'slug',
+            'driver',
+            'numPassengers',
+            'date',
+            'startTime',
+            'finishTime',
+            'city',               
+            'ubication',
+            'postalCode',
+            'valorations',
+        )
+    def create(self, validated_data):  #Esto lo envia a la bd
+        #data es lo del postman
+        #validated_data tiene el driver
+        driver = self.context.get('driver', None)
+        travel = Travels.objects.create(driver=driver, **validated_data)
+        return travel
+
+
+
     

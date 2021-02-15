@@ -15,9 +15,9 @@ class Travels(models.Model):
     postalCode = models.CharField(max_length=200, default="0000")
     createdAt = models.DateTimeField(auto_now_add=True) #default timezone.now()
     active = models.BooleanField(default=True)
-    valorations = models.ManyToManyField(
-        'travels.Valoration', related_name='travels'
-    )
+    # valorations = models.ManyToManyField(
+    #     'travels.Valoration', related_name='travels'
+    # )
 
 def __str__(self):
     return self.id

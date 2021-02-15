@@ -34,8 +34,6 @@ def add_slug_to_travel_if_not_exists(sender, instance, *args, **kwargs):
 
 @receiver(pre_save, sender=Valoration)
 def add_slug_to_valoration_if_not_exists(sender, instance, *args, **kwargs):
-    print("*************CREANDO SLUG VALORATION*************")
-    # print(instance.author)
     MAXIMUM_SLUG_LENGTH = 200
 
     if instance and not instance.slug:

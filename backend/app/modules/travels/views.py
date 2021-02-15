@@ -62,9 +62,6 @@ class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
     queryset = Travels.objects.all()
     serializer_class = TravelSerializer
 
-    # print("*************dentro del retrieve*************")
-    # print("queryseet-> ",queryset.filter(slug="ontinyent-3vbudf"))    
-
     def retrieve(self, request, travel_slug):
         serializer_context = {'request': request}
         try:
@@ -81,26 +78,10 @@ class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
         )
 
         #Get Valorations de este travel
-
-        valorations = Valoration.objects.all().filter(travel_slug=travel_slug)
-        print("VALORATIONS:")
-        print(valorations)
-
-
-        print("Selializer data")
-        print(serializer.data)
-        serializer.data.valorations = valorations
-
+        # valorations = Valoration.objects.all().filter(travel_slug=travel_slug)
         # serializer.data.valorations = valorations
 
-        # serializer = self.serializer_class(
-        #     serializer_instance,
-        #     valorations=valorations
-        # )
 
-        print ("---------------------------")
-        print(serializer.data)
-        # print(valorations.get(travel_slug=travel_slug))
         
         return Response(serializer.data, status=status.HTTP_200_OK)
 
