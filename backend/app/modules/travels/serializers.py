@@ -8,8 +8,9 @@ from .relations import ValorationRelatedField
 class ValorationSerializer(serializers.ModelSerializer):
     slug = serializers.SlugField(required=False)
     author = ProfileSerializer(required=False)
-
     createdAt = serializers.SerializerMethodField(method_name='get_created_at')
+    travel_slug = serializers.SlugField(required=False)
+    # tagList = TagRelatedField(many=True, required=False, source='tags')
     # updatedAt = serializers.SerializerMethodField(method_name='get_updated_at')
 
     class Meta:
@@ -23,7 +24,9 @@ class ValorationSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
+        print("___________Create valoration serializer_________")
         travel = self.context['travel']
+        # travel_slug = self.context['travel']
         author = self.context['author']  #El que hace el comentario
 
         return Valoration.objects.create(
@@ -36,6 +39,7 @@ class ValorationSerializer(serializers.ModelSerializer):
     # def get_updated_at(self, instance):
     #     return instance.updated_at.isoformat()
 
+########################################################################################
 
 class TravelSerializer(serializers.ModelSerializer):
     driver = ProfileSerializer(read_only=True) #driver es de tipo profile

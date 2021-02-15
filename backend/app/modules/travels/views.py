@@ -121,18 +121,18 @@ class ValorationsListCreateAPIView(generics.ListCreateAPIView):
         return queryset.filter(**filters)
 
     def create(self, request, travel_slug=None):
-        print("********CREATE VALORATION**********")
         data = request.data.get('valoration', {}) #La valoration del postman está ok
         context = {'author': request.user.profile} #El author de la valoration ok
 
         try:
             context['travel'] = Travels.objects.get(slug=travel_slug)
+
         except Travels.DoesNotExist:
             raise NotFound('An travel with this slug does not exist.')
 
 
         serializer = self.serializer_class(data=data, context=context)  #Data tiene la valoration, context tiene el author de la valoration y el travel de la valoration
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=True)  #Peta aqui
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
