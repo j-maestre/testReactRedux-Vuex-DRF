@@ -15,24 +15,26 @@ class Travels(models.Model):
     postalCode = models.CharField(max_length=200, default="0000")
     createdAt = models.DateTimeField(auto_now_add=True) #default timezone.now()
     active = models.BooleanField(default=True)
-
-    
+    valorations = models.ManyToManyField(
+        'travels.Valoration', related_name='travels'
+    )
 
 def __str__(self):
     return self.id
 
 
 
-class Valoration(TimestampedModel):
+class Valoration(models.Model):
     slug = models.SlugField(db_index=True, max_length=255, unique=True, primary_key = True)
     body = models.TextField()
-    travel = models.ForeignKey(
+    travel_slug = models.ForeignKey(
         'travels.Travels', related_name='valorations', on_delete=models.CASCADE 
     )
 
     author = models.ForeignKey(
         'profiles.Profile', related_name='valorations', on_delete=models.CASCADE
     )
+    createdAt = models.DateTimeField(auto_now_add=True)
 
  
 

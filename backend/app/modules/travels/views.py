@@ -17,6 +17,7 @@ class ListTravels(generics.ListCreateAPIView):
     #GET normal
     def get_queryset(self):
         queryset = self.queryset
+        #  print(Valoration.objects.get(travel_slug_id="ontinyent-p3jlat"))
         return queryset.all()  #Devuelve todos los travels, en un futuro aqui podemos aplicar filtros
 
 
@@ -78,6 +79,29 @@ class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
             serializer_instance,
             context=serializer_context
         )
+
+        #Get Valorations de este travel
+
+        valorations = Valoration.objects.all().filter(travel_slug=travel_slug)
+        print("VALORATIONS:")
+        print(valorations)
+
+
+        print("Selializer data")
+        print(serializer.data)
+        serializer.data.valorations = valorations
+
+        # serializer.data.valorations = valorations
+
+        # serializer = self.serializer_class(
+        #     serializer_instance,
+        #     valorations=valorations
+        # )
+
+        print ("---------------------------")
+        print(serializer.data)
+        # print(valorations.get(travel_slug=travel_slug))
+        
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     #Eliminar el travel estando logueado y poniendo el slug del travel
@@ -94,37 +118,41 @@ class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
         travel.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
-# class ValorationsListCreateAPIView(generics.ListCreateAPIView):
-#     lookup_field = 'id'
-#     lookup_url_kwarg = 'id'
-#     permission_classes = (IsAuthenticatedOrReadOnly,)
-#     queryset = Valoration.objects.select_related(
-#         'travels', 'travels__driver', 'travels__driver__user',
-#         'driver', 'driver__user'
-#     )
-#     renderer_classes = (ValorationJSONRenderer,)
-#     serializer_class = ValorationSerializer
+class ValorationsListCreateAPIView(generics.ListCreateAPIView):
+    print("DENTRO DE CREATE VALORATION")
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'slug'
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Valoration.objects.select_related(
+        'travels', 'travels__driver', 'travels__driver__user',
+        'driver', 'driver__user'
+    )
+    renderer_classes = (ValorationJSONRenderer,)
+    serializer_class = ValorationSerializer
 
-#     def filter_queryset(self, queryset):
-#         # The built-in list function calls `filter_queryset`. Since we only
-#         # want comments for a specific article, this is a good place to do
-#         # that filtering.
-#         filters = {self.lookup_field: self.kwargs[self.lookup_url_kwarg]}
+    def filter_queryset(self, queryset):
+        print("Dentro de filter query")
+        # The built-in list function calls `filter_queryset`. Since we only
+        # want comments for a specific article, this is a good place to do
+        # that filtering.
+        filters = {self.lookup_field: self.kwargs[self.lookup_url_kwarg]}
 
-#         return queryset.filter(**filters)
+        return queryset.filter(**filters)
 
-#     def create(self, request, article_slug=None):
-#         data = request.data.get('valoration', {})
-#         context = {'author': request.user.profile}
+    def create(self, request, travel_slug=None):
+        print("********CREATE VALORATION**********")
+        data = request.data.get('valoration', {}) #La valoration del postman está ok
+        context = {'author': request.user.profile} #El author de la valoration ok
 
-#         try:
-#             context['valoration'] = Article.objects.get(slug=article_slug)
-#         except Article.DoesNotExist:
-#             raise NotFound('An travel with this slug does not exist.')
+        try:
+            context['travel'] = Travels.objects.get(slug=travel_slug)
+        except Travels.DoesNotExist:
+            raise NotFound('An travel with this slug does not exist.')
 
-#         serializer = self.serializer_class(data=data, context=context)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save()
 
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+        serializer = self.serializer_class(data=data, context=context)  #Data tiene la valoration, context tiene el author de la valoration y el travel de la valoration
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 

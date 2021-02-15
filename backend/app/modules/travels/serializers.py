@@ -1,10 +1,13 @@
 from rest_framework import serializers
 from app.modules.profiles.serializers import ProfileSerializer
 from .models import Travels, Valoration
+from .relations import ValorationRelatedField
+
 
 class TravelSerializer(serializers.ModelSerializer):
     driver = ProfileSerializer(read_only=True) #driver es de tipo profile
     slug = serializers.SlugField(required=False)
+    # valorationsList = ValorationRelatedField(many=True, required=False, source='valorations')
     # travel = serializers.CharField()
 
     class Meta:
@@ -19,6 +22,8 @@ class TravelSerializer(serializers.ModelSerializer):
             'city',               
             'ubication',
             'postalCode',
+            # 'valorationsList',
+            # 'valorations',
         )
     def create(self, validated_data):  #Esto lo envia a la bd
         #data es lo del postman
@@ -30,10 +35,11 @@ class TravelSerializer(serializers.ModelSerializer):
 
 #Valorations (comentarios...)
 class ValorationSerializer(serializers.ModelSerializer):
+    slug = serializers.SlugField(required=False)
     author = ProfileSerializer(required=False)
 
     createdAt = serializers.SerializerMethodField(method_name='get_created_at')
-    updatedAt = serializers.SerializerMethodField(method_name='get_updated_at')
+    # updatedAt = serializers.SerializerMethodField(method_name='get_updated_at')
 
     class Meta:
         model = Valoration
@@ -42,7 +48,8 @@ class ValorationSerializer(serializers.ModelSerializer):
             'author',
             'body',
             'createdAt',
-            'updatedAt',
+            'travel_slug',
+            # 'updatedAt',
         )
 
     def create(self, validated_data):
@@ -50,12 +57,12 @@ class ValorationSerializer(serializers.ModelSerializer):
         author = self.context['author']  #El que hace el comentario
 
         return Valoration.objects.create(
-            author=author, travel=travel, **validated_data
+            author=author, travel_slug=travel, **validated_data
         )
 
     def get_created_at(self, instance):
-        return instance.created_at.isoformat()
+        return instance.createdAt.isoformat()
 
-    def get_updated_at(self, instance):
-        return instance.updated_at.isoformat()
+    # def get_updated_at(self, instance):
+    #     return instance.updated_at.isoformat()
     
