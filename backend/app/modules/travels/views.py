@@ -107,21 +107,17 @@ class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
     #Eliminar el travel estando logueado y poniendo el slug del travel
     def destroy(self, request, travel_slug=None):
         queryset = self.queryset
-        print("*************DESTROY*******************")
-        print("USER -> ", self.request.user)
-        print(Travels.objects.all())
 
         try:
             travel = Travels.objects.get(
                 slug=travel_slug, 
                 driver=self.request.user.profile)
         except Travels.DoesNotExist:
-            raise NotFound('An travel with this slug does not exist.')
+            raise NotFound('An travel with this slug does not exist or you are not the author.')
         travel.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 class ValorationsListCreateAPIView(generics.ListCreateAPIView):
-    print("DENTRO DE CREATE VALORATION")
     lookup_field = 'slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
