@@ -15,7 +15,6 @@ class CategoriesViewSet(mixins.CreateModelMixin,
                         mixins.ListModelMixin,
                         mixins.RetrieveModelMixin,
                         viewsets.GenericViewSet):
-    print("*****OLE LOS CANELONES CATEGORIES VIEW SET******")
     lookup_field = 'id'
     queryset = Categories.objects.all()
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -26,9 +25,6 @@ class CategoriesViewSet(mixins.CreateModelMixin,
 
     #GET normal
     def get_queryset(self):
-        print("**********************************************")
-        print("dentro del get categories")
-        print("**********************************************")
         queryset = self.queryset
         return queryset.all()  #Todas las categorias
 
@@ -47,7 +43,6 @@ class CategoriesViewSet(mixins.CreateModelMixin,
 
 
     def create(self, request):
-        print("**********Create category*******")
         serializer_class = CategoriesSerializer
         serializer_context = {
             'request': request
@@ -70,21 +65,21 @@ class CategoriesViewSet(mixins.CreateModelMixin,
 #Admin
 class CategoriesViewSetAdmin(generics.RetrieveUpdateDestroyAPIView): #viewsets.ModelViewSet
     # lookup_field = 'id'
+    lookup_url_kwarg = 'id'
     queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
-    lookup_field = 'id'
     permission_classes = (IsAuthenticated,)
     permission_classes = (IsAdminUser,)
 
 
     def destroy(self, request, id=None):
-        print("*************DESTROY*******************")
-        print("USER -> ", self.request.user)
-        print(Categories.objects.all())
+        queryset = self.queryset
         try:
             category = Categories.objects.get(id=id)
 
         except Categories.DoesNotExist:
             raise NotFound('An category with this id does not exist.')
+
         category.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
