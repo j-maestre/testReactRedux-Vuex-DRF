@@ -15,14 +15,16 @@ router.register(r'categories', CategoriesViewSet)
  
 #Admin
 # router.register(r'^categories_Admin/(?P<category_id>\d+)/$', CategoriesViewSetAdmin)  #Las categorias solo las puede borrar un admin  xema@gmail.com
+# router.register(r'^categories_Admin/(?P<id>\d+)/$', CategoriesViewSetAdmin.as_view())
 # r'^categories_Admin/(?P<id>\d+)/$'
 # r'^categories_Admin/(?P<id>\d+)/$'
-# router.register(r'comments_Admin', CommentViewSetAdmin)   
+# router.register(r'comments_Admin', CommentViewSetAdmin)
 # router.register(r'tags_Admin', TagViewSetAdmin)  
 
 
 urlpatterns = [
-    url(r'^categories_Admin/(?P<id>\d+)/$', CategoriesViewSetAdmin.as_view()),  #Retrieve and destroy
+    url(r'^categories_Admin/(?P<id>\d+)/$', CategoriesViewSetAdmin.as_view())  #Retrieve and destroy
+   
     # url(r'^categories/?$', CategoriesViewSet)
     # url(r'^posts_slug/(?P<post_slug>[-\w]+)/?$', DetailsPost_slug.as_view()),
 ]

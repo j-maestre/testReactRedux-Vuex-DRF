@@ -80,20 +80,41 @@ class RetrieveTravel(generics.RetrieveUpdateDestroyAPIView):
         #Get Valorations de este travel
         # valorations = Valoration.objects.all().filter(travel_slug=travel_slug)
         # serializer.data.valorations = valorations
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-        
+    def update(self, request, travel_slug):
+        serializer_context = {'request': request}
+
+        try:
+            serializer_instance = self.queryset.get(slug=travel_slug)
+        except Travels.DoesNotExist:
+            raise NotFound('An article with this slug does not exist.')
+            
+        serializer_data = request.data.get('travel', {})
+
+        serializer = self.serializer_class(
+            serializer_instance, 
+            context=serializer_context,
+            data=serializer_data, 
+            partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     #Eliminar el travel estando logueado y poniendo el slug del travel
     def destroy(self, request, travel_slug=None):
+        queryset = self.queryset
         print("*************DESTROY*******************")
         print("USER -> ", self.request.user)
         print(Travels.objects.all())
+
         try:
             travel = Travels.objects.get(
                 slug=travel_slug, 
-                driver=self.request.user)
+                driver=self.request.user.profile)
         except Travels.DoesNotExist:
             raise NotFound('An travel with this slug does not exist.')
         travel.delete()
