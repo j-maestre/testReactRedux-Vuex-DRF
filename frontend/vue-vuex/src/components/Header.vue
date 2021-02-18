@@ -124,6 +124,7 @@ export default {
   height: 115%;
   width: 120%;
 }
+
 .mobile a.active i {
   color: #faff8a;
   font-size: 35px;

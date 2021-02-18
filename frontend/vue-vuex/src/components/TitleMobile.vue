@@ -8,8 +8,11 @@
         class="fas fa-arrow-circle-left back"
       ></i>
       <h2>FORGETIT</h2>
-      <router-link class="user" to="/login">
+      <router-link v-if="!currentUser.username" class="user" to="/login">
         <i class="fas fa-user-circle"></i>
+      </router-link>
+      <router-link v-if="currentUser.username" class="user" to="/login">
+        <img src="https://thispersondoesnotexist.com/image" alt="profile" />
       </router-link>
     </section>
   </div>
@@ -25,10 +28,11 @@ export default {
   setup() {
     const store = useStore();
     const shipping = computed(() => store.state.shipping);
+    const currentUser = computed(() => store.state.user.user);
 
     let history = window.history.length;
     console.log(history);
-    return { history, shipping };
+    return { history, shipping, currentUser };
   },
   methods: {
     changePage() {
@@ -74,5 +78,12 @@ export default {
   position: absolute;
   left: 15px;
   font-size: 25px;
+}
+
+.mobile .user img {
+  width: 45px;
+  object-fit: cover;
+  margin-top: 7px;
+  border-radius: 100%;
 }
 </style>

@@ -142,12 +142,11 @@ export default {
 }
 
 .mobile .travels .travel {
-  border-radius: 13px;
   border: 2px solid black;
   height: 140px;
   padding: 10px 20px;
   margin: 15px 0px;
-  background-color: #faff8a;
+  background-color: #ffffff;
   display: grid;
   grid-template-columns: 35% 33% 33%;
   grid-template-areas:

@@ -74,6 +74,7 @@ export default {
       password: "",
       checked: true,
       loading: false,
+      routerFrom: "",
     };
   },
   methods: {
@@ -88,8 +89,13 @@ export default {
       });
 
       // Si el login es success.
-      response ? this.$router.push({ name: "Search" }) : "";
+      response ? this.$router.push({ name: "Home" }) : "";
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    // console.log(from.name);
+    // this.routerFrom = from.name;
+    next();
   },
 };
 </script>

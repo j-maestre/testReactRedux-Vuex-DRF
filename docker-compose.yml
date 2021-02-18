@@ -16,8 +16,8 @@ services:
   servidor:
     build: backend/.
     container_name: "Django_container"
-    # command: bash -c "export API_AUTHENTICATION="False" && python3 manage.py makemigrations && python3 manage.py migrate && python manage.py runserver 0.0.0.0:8000 && python3 manage.py collectstatic --noinput"
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "export API_AUTHENTICATION="False" && python3 manage.py makemigrations && python3 manage.py migrate && python manage.py runserver 0.0.0.0:8000 && python3 manage.py collectstatic --noinput"
+    #command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
     volumes:
@@ -48,7 +48,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin
+    container_name: "Pgadmin_container"
     environment:
       PGADMIN_DEFAULT_EMAIL: "p@p.p"
       PGADMIN_DEFAULT_PASSWORD: "xemagordo"

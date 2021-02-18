@@ -6,6 +6,9 @@ import Message from "@/views/Message.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 
+// VueRouteMiddleware (Utilizado mas para organizacion)
+import { auth, noAuth } from "@/router/middleware/auth";
+
 const routes = [
   {
     path: "/",
@@ -13,9 +16,16 @@ const routes = [
     component: Home,
   },
   {
+    path: "/profile",
+    name: "Profile",
+    component: Home,
+    beforeEnter: [auth],
+  },
+  {
     path: "/message",
     name: "Message",
     component: Message,
+    beforeEnter: [auth],
   },
   {
     path: "/travels",
@@ -31,11 +41,13 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+    beforeEnter: [noAuth],
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
+    beforeEnter: [noAuth],
   },
 ];
 

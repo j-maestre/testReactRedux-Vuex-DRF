@@ -1,7 +1,7 @@
 const state = {
   category: null,
   filters: null,
-  travel: null
+  travel: null,
 };
 
 const mutations = {
@@ -19,7 +19,7 @@ const actions = {
   },
   seFilters({ commit }, filters) {
     commit("SET_FILTERS", filters);
-  }
+  },
 };
 
 const getters = {};

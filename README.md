@@ -75,6 +75,7 @@
 6. Async y await con las llamadas api.
 7. Syntax watch, computed...
 8. Emit en autocomplete component.
+9. Middleware auth reutilizable a nivel de router, usando beforeEnter de Navigation Guards (vue3)
 
 ### Backend
 
@@ -82,3 +83,16 @@
 2. DRF + Postman -> home, list, details, ....
 3. Register/Login/JWT/Header
 4. exceptions.py
+
+Improvements -> no cal tenir-les totes....
+
+- load imatges des de local
+
+- lazy-loading-in-vue
+- middleware_auth Vue
+
+- isAdmin
+- Vue + TS
+
+- lifecycle-hooks Vue3
+  - beforeDestroy = onBeforeUnmount

@@ -18,7 +18,15 @@ const getters = {
     return state;
   },
 };
-const actions = {};
+const actions = {
+  sendMsg({ commit }) {
+    commit("SET_MSG", {
+      type: false,
+      title: "Login required",
+      details: "",
+    });
+  },
+};
 const modules = {
   user,
   shipping,

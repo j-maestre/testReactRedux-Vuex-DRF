@@ -84,7 +84,7 @@ export default {
       });
 
       // Si el login es success.
-      response ? this.$router.push({ name: "Search" }) : "";
+      response ? this.$router.push({ name: "Home" }) : "";
     },
   },
 };

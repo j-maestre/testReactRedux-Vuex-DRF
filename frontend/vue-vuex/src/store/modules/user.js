@@ -127,14 +127,8 @@ const actions = {
     return request;
   },
   async checkout({ commit }) {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      return true;
-    }
-
     try {
-      var request = await userApi.checkout(token);
+      var request = await userApi.checkout();
 
       commit("SET_TOKEN", request.data.user.token);
       commit("SET_USER", {
@@ -142,21 +136,7 @@ const actions = {
         email: request.data.user.email,
       });
     } catch (error) {
-      let log = Object.entries(error.response.data.errors).map(
-        ([key, value]) => key + ": " + value
-      );
-
-      // ERROR
-      commit(
-        "SET_MSG",
-        {
-          type: false,
-          title: "Registration failedd",
-          details: "" + log,
-        },
-        { root: true }
-      );
-      return false;
+      return true;
     }
   },
 };
