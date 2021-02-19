@@ -23,7 +23,7 @@ const mutations = {
 const getters = {};
 
 const actions = {
-  async logout({ commit }) {
+  logout({ commit }) {
     commit("SET_TOKEN", "");
     commit("SET_USER", {});
 
@@ -128,7 +128,7 @@ const actions = {
   },
   async checkout({ commit }) {
     try {
-      var request = await userApi.checkout();
+      var request = await userApi.getProfile();
 
       commit("SET_TOKEN", request.data.user.token);
       commit("SET_USER", {
@@ -136,7 +136,15 @@ const actions = {
         email: request.data.user.email,
       });
     } catch (error) {
-      return true;
+      return error;
+    }
+  },
+
+  async getProfile() {
+    try {
+      return await userApi.getProfile();
+    } catch (error) {
+      return error;
     }
   },
 };

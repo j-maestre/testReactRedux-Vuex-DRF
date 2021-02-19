@@ -8,6 +8,6 @@ export function register(credentials) {
   return http.post("users", { user: credentials });
 }
 
-export function checkout() {
+export function getProfile() {
   return auth_http.get("user");
 }

@@ -2,7 +2,13 @@
   <div class="page">
     <section class="mobile">
       <h1 class="font-secundary">Registrate en FORGETIT y gana dinero!!</h1>
-      <InputText class="input-type" placeholder="Username" v-model="username" />
+      <InputText
+        class="input-type"
+        placeholder="Nombre de usuario"
+        v-model="username"
+      />
+      <InputText class="input-type" placeholder="Nombre" v-model="name" />
+      <InputText class="input-type" placeholder="Apellidos" v-model="surname" />
       <InputText class="input-type" placeholder="Email" v-model="email" />
       <Password
         class="input-type"
@@ -27,11 +33,17 @@
     </section>
     <section class="desktop">
       <h1 class="font-secundary">Registrate en FORGETIT y gana dinero!!</h1>
-      <InputText class="input-type" placeholder="Username" v-model="username" />
+      <InputText
+        class="input-type"
+        placeholder="Nombre de usuario"
+        v-model="username"
+      />
+      <InputText class="input-type" placeholder="Nombre" v-model="name" />
+      <InputText class="input-type" placeholder="Apellidos" v-model="surname" />
       <InputText class="input-type" placeholder="Email" v-model="email" />
       <Password
         class="input-type"
-        placeholder="Password"
+        placeholder="Contraseña"
         v-model="password"
       ></Password>
 
@@ -69,6 +81,8 @@ export default {
       password: "",
       checked: true,
       loading: false,
+      name: "",
+      surname: "",
     };
   },
   methods: {
@@ -81,6 +95,8 @@ export default {
         email: this.email,
         password: this.password,
         checked: this.checked,
+        name: this.name,
+        surnames: this.surnames,
       });
 
       // Si el login es success.

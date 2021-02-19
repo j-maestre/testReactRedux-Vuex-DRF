@@ -11,7 +11,7 @@
       <router-link v-if="!currentUser.username" class="user" to="/login">
         <i class="fas fa-user-circle"></i>
       </router-link>
-      <router-link v-if="currentUser.username" class="user" to="/login">
+      <router-link v-if="currentUser.username" class="user" to="/profile">
         <img src="https://thispersondoesnotexist.com/image" alt="profile" />
       </router-link>
     </section>

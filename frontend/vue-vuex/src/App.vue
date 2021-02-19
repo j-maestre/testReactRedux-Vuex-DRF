@@ -2,9 +2,11 @@
   <div id="app">
     <TitleMobile />
     <Header />
-    <br />
-    <br />
-    <br />
+    <div class="mobile">
+      <br />
+      <br />
+      <br />
+    </div>
     <!-- {{ state }} -->
     <router-view />
     <Toast />

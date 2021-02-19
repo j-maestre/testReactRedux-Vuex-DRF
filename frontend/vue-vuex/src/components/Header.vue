@@ -45,17 +45,25 @@
           <ul>
             <router-link class="li" active-class="active" to="/profile">
               <i class="fas fa-user"></i>
-              <p>Perfil</p>
+              <p>Mi cuenta</p>
             </router-link>
-            <router-link class="li" active-class="active" to="/travels">
+            <router-link class="li" active-class="active" to="/profile/travels">
               <i class="fas fa-user"></i>
               <p>Mis viajes</p>
             </router-link>
-            <router-link class="li" active-class="active" to="/shipping">
+            <router-link
+              class="li"
+              active-class="active"
+              to="/profile/shippings"
+            >
               <i class="fas fa-user"></i>
               <p>Mis envios</p>
             </router-link>
-            <router-link class="li" active-class="active" to="/settings">
+            <router-link
+              class="li"
+              active-class="active"
+              to="/profile/settings"
+            >
               <i class="fas fa-user"></i>
               <p>Ajustes</p>
             </router-link>
@@ -73,14 +81,19 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 export default {
   name: "Header",
   setup() {
     const store = useStore();
     const currentUser = computed(() => store.state.user.user);
+    const router = useRouter();
 
-    const logout = () => store.dispatch("user/logout");
+    const logout = () => {
+      store.dispatch("user/logout");
+      router.push({ name: "Home" });
+    };
 
     return {
       logout,
