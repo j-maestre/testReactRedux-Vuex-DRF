@@ -32,6 +32,9 @@
           <Textarea v-model="form.bio" rows="7" />
         </div>
       </div>
+      <div class="button-primary button">
+        Guardar cambios
+      </div>
     </section>
   </div>
 </template>
@@ -50,13 +53,14 @@ export default {
     let response = store.dispatch("user/getProfile");
     let form = reactive({
       name: "",
-      surnames: "wwww",
+      surnames: "",
       email: "",
-      tel: "ww",
+      tel: "",
       bio: "",
     });
 
     response.then((data) => {
+      console.log(data);
       form.name = data.data.user.name;
       form.surnames = data.data.user.surnames;
       form.email = data.data.user.email;
@@ -64,7 +68,9 @@ export default {
       form.bio = data.data.user.bio;
     });
 
-    return { form };
+    let updateProfile = store.dispatch("user/updateProfile");
+
+    return { form, updateProfile };
   },
 };
 </script>
@@ -108,5 +114,8 @@ export default {
 .page .desktop .subgroup img {
   width: 60%;
   margin-bottom: 20px;
+}
+
+.page .desktop .subgroup .button {
 }
 </style>

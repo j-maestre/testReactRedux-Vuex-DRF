@@ -11,3 +11,7 @@ export function register(credentials) {
 export function getProfile() {
   return auth_http.get("user");
 }
+
+export function updateProfile(form) {
+  return auth_http.post("user/update", { user: form });
+}

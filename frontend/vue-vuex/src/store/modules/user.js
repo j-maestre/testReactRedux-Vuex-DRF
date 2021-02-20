@@ -147,6 +147,14 @@ const actions = {
       return error;
     }
   },
+
+  async updateProfile(form) {
+    try {
+      return await userApi.updateProfile(form);
+    } catch (error) {
+      return error;
+    }
+  },
 };
 
 export default { namespaced: true, state, mutations, getters, actions };
