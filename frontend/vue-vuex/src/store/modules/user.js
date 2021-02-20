@@ -1,4 +1,5 @@
 import { userApi } from "../../api";
+import { failed } from "../utils/failed";
 
 const state = {
   token: "",
@@ -60,21 +61,7 @@ const actions = {
         email: request.data.user.email,
       });
     } catch (error) {
-      let log = Object.entries(error.response.data.errors).map(
-        ([key, value]) => key + ": " + value
-      );
-
-      // ERROR
-      commit(
-        "SET_MSG",
-        {
-          type: false,
-          title: "Authentication failed",
-          details: "" + log,
-        },
-        { root: true }
-      );
-      return false;
+      return failed(commit, error, "Authentication failed");
     }
 
     commit("SET_LOADER", false);
@@ -105,21 +92,7 @@ const actions = {
         email: request.data.user.email,
       });
     } catch (error) {
-      let log = Object.entries(error.response.data.errors).map(
-        ([key, value]) => key + ": " + value
-      );
-
-      // ERROR
-      commit(
-        "SET_MSG",
-        {
-          type: false,
-          title: "Registration failed",
-          details: "" + log,
-        },
-        { root: true }
-      );
-      return false;
+      return failed(commit, error, "Registration failed");
     }
 
     commit("SET_LOADER", false);
@@ -136,23 +109,23 @@ const actions = {
         email: request.data.user.email,
       });
     } catch (error) {
-      return error;
+      return failed(commit, error, false);
     }
   },
 
-  async getProfile() {
+  async getProfile({ commit }) {
     try {
       return await userApi.getProfile();
     } catch (error) {
-      return error;
+      return failed(commit, error, "Registration failed");
     }
   },
 
-  async updateProfile(form) {
+  async updateProfile({ commit }, form) {
     try {
       return await userApi.updateProfile(form);
     } catch (error) {
-      return error;
+      return failed(commit, error, "Registration failed");
     }
   },
 };

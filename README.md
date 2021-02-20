@@ -93,10 +93,7 @@ Improvements -> no cal tenir-les totes....
 - load imatges des de local
 
 - lazy-loading-in-vue
-- middleware_auth Vue
 
-- isAdmin
-- Vue + TS
 
 - lifecycle-hooks Vue3
   - beforeDestroy = onBeforeUnmount

@@ -17,7 +17,7 @@
 import Header from "@/components/Header";
 import TitleMobile from "@/components/TitleMobile";
 import Toast from "primevue/toast";
-import { computed } from "vue";
+import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -27,8 +27,10 @@ export default {
     const state_msg = computed(() => store.state.msg);
     const state = computed(() => store.state);
 
-    // Comprobamos que el token es valido y obtenemos los datos del usuario logeado.
-    store.dispatch("user/checkout");
+    onMounted(async () => {
+      // Comprobamos que el token es valido y obtenemos los datos del usuario logeado.
+      console.log("Is logged?:", await store.dispatch("user/checkout"));
+    });
 
     return {
       store,
