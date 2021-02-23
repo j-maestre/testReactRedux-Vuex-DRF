@@ -23,7 +23,6 @@ class ListTravels(generics.ListCreateAPIView):
             driver = self.request.user.profile #El dueño de los travels
         except: #No hay driver, asignamos driver a none
             driver = None
-        # driver = self.request.user.profile #El dueño de los travels
 
         if driver is not None: #Hay driver, buscamos solo sus travels
             queryset = Travels.objects.all().filter(driver=driver)
