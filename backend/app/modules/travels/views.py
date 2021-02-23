@@ -9,21 +9,33 @@ from .renderers import ValorationJSONRenderer
 import json
 
 class ListTravels(generics.ListCreateAPIView):
-    # print("OLE LOS CANELONES LIST TRAVELSSSSS")
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    # permission_classes = (AllowAny,)
     queryset = Travels.objects.all()
     serializer_class = TravelSerializer
+    
 
     #GET normal
     def get_queryset(self):
         queryset = self.queryset
-        #  print(Valoration.objects.get(travel_slug_id="ontinyent-p3jlat"))
-        return queryset.all()  #Devuelve todos los travels, en un futuro aqui podemos aplicar filtros
+
+        try:
+            driver = self.request.user.profile #El dueño de los travels
+        except: #No hay driver, asignamos driver a none
+            driver = None
+        # driver = self.request.user.profile #El dueño de los travels
+
+        if driver is not None: #Hay driver, buscamos solo sus travels
+            queryset = Travels.objects.all().filter(driver=driver)
+
+
+        return queryset.all()  #Devuelve todos los travels o los travels de un driver
 
 
     # PAGINATE
     def list(self, request):
         serializer_context = {'request': request}
+
         page = self.paginate_queryset(self.get_queryset())
 
         serializer = self.serializer_class(
@@ -33,7 +45,34 @@ class ListTravels(generics.ListCreateAPIView):
         )
         return self.get_paginated_response(serializer.data)
 
-    
+# class MyTravels(generics.ListCreateAPIView):
+#     print("**************************MY TRAVELS***************************")
+#     queryset = Travels.objects.all()
+#     permission_classes = (IsAuthenticatedOrReadOnly,)
+#     serializer_class = TravelSerializer
+
+#    def get(self, request):
+#         print("*****************************************************")
+#         # queryset = self.queryset
+
+#         driver = request.user.profile
+
+#         print ("OLE LOS CANELONES")
+#         print(driver)
+#         serializer_context = {
+#             'driver': driver,
+#         }
+
+#         #  queryset = queryset.filter(author__user__username=author)
+#         # queryset.objects.all().filter()
+#         travels = Travels.objects.all().filter(travel_driver=driver)
+
+
+#         # print("HA HECHO UN GET CON TOKEN???")
+#         # print(serializer_context.driver)
+#         #  print(Valoration.objects.get(travel_slug_id="ontinyent-p3jlat"))
+#         return queryset.all()  #Devuelve todos los travels, en un futuro aqui podemos aplicar filtros
+
 
 class PostTravels(generics.ListCreateAPIView):
     #POST http://0.0.0.0:8000/api/travels/
@@ -129,10 +168,6 @@ class ValorationsListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ValorationSerializer
 
     def filter_queryset(self, queryset):
-        print("Dentro de filter query")
-        # The built-in list function calls `filter_queryset`. Since we only
-        # want comments for a specific article, this is a good place to do
-        # that filtering.
         filters = {self.lookup_field: self.kwargs[self.lookup_url_kwarg]}
 
         return queryset.filter(**filters)

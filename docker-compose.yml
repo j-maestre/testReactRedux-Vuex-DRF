@@ -45,6 +45,8 @@ services:
       - servidor
     networks:
       - network
+    logging:
+      driver: none
 
   pgadmin:
     image: dpage/pgadmin4
@@ -58,6 +60,8 @@ services:
       - postgresql
     networks:
       - network
+    logging:
+      driver: none
 
 networks:
   network:
