@@ -45,35 +45,6 @@ class ListTravels(generics.ListCreateAPIView):
         )
         return self.get_paginated_response(serializer.data)
 
-# class MyTravels(generics.ListCreateAPIView):
-#     print("**************************MY TRAVELS***************************")
-#     queryset = Travels.objects.all()
-#     permission_classes = (IsAuthenticatedOrReadOnly,)
-#     serializer_class = TravelSerializer
-
-#    def get(self, request):
-#         print("*****************************************************")
-#         # queryset = self.queryset
-
-#         driver = request.user.profile
-
-#         print ("OLE LOS CANELONES")
-#         print(driver)
-#         serializer_context = {
-#             'driver': driver,
-#         }
-
-#         #  queryset = queryset.filter(author__user__username=author)
-#         # queryset.objects.all().filter()
-#         travels = Travels.objects.all().filter(travel_driver=driver)
-
-
-#         # print("HA HECHO UN GET CON TOKEN???")
-#         # print(serializer_context.driver)
-#         #  print(Valoration.objects.get(travel_slug_id="ontinyent-p3jlat"))
-#         return queryset.all()  #Devuelve todos los travels, en un futuro aqui podemos aplicar filtros
-
-
 class PostTravels(generics.ListCreateAPIView):
     #POST http://0.0.0.0:8000/api/travels/
 
