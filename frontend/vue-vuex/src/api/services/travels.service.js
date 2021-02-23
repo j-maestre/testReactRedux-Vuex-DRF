@@ -1,9 +1,9 @@
-import axios from "axios";
+import { http } from "../config";
 
 export function list() {
-  return axios.get("http://localhost:8000/api/travels");
+  return http.get("http://localhost:8000/api/travels");
 }
 
 export function create(data) {
-  return axios.post("http://localhost:8000/api/travels/create/",data);
+  return http.post("http://localhost:8000/api/travels/create/", data);
 }

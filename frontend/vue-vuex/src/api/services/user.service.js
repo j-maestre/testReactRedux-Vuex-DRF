@@ -1,13 +1,17 @@
-import { http } from "../config";
+import { http, auth_http } from "../config";
 
 export function login(credentials) {
   return http.post("users/login", { user: credentials });
 }
 
 export function register(credentials) {
-  return http.post("users/", { user: credentials });
+  return http.post("users", { user: credentials });
 }
 
-export function checkout(token) {
-  return http.post("users/", { user: token });
+export function getProfile() {
+  return auth_http.get("user");
+}
+
+export function updateProfile(form) {
+  return auth_http.post("user/update", { user: form });
 }

@@ -1,41 +1,58 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "@/views/Home.vue";
-import Contact from "@/views/Contact.vue";
-import Travels from "@/views/Travels.vue";
-import Message from "@/views/Message.vue";
-import Login from "@/views/Login.vue";
-import Register from "@/views/Register.vue";
 
+// MiddleWares
+import { auth, noAuth } from "@/router/middleware/auth";
+
+// Carga de modulos
+const lazyLoad = (view) => import(`@/views/${view}.vue`);
+
+// Rutas
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: lazyLoad("Home"),
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: lazyLoad("Profile"),
+    children: [
+      { path: "/profile", component: lazyLoad("Profile/InfoProfile") },
+      { path: "/profile/edit", component: lazyLoad("Profile/EditProfile") },
+      { path: "/profile/travels", component: lazyLoad("Home") },
+      { path: "/profile/shippings", component: lazyLoad("Home") },
+      { path: "/profile/settings", component: lazyLoad("Home") },
+    ],
+    beforeEnter: [auth],
   },
   {
     path: "/message",
     name: "Message",
-    component: Message,
+    component:  lazyLoad("Message"),
+    beforeEnter: [auth],
   },
   {
     path: "/travels",
     name: "Travels",
-    component: Travels,
+    component: lazyLoad("Travels"),
   },
   {
     path: "/contact",
     name: "Contact",
-    component: Contact,
+    component: lazyLoad("Contact"),
   },
   {
     path: "/login",
     name: "Login",
-    component: Login,
+    component: lazyLoad("Login"),
+    beforeEnter: [noAuth],
   },
   {
     path: "/register",
     name: "Register",
-    component: Register,
+    component: lazyLoad("Register"),
+    beforeEnter: [noAuth],
   },
 ];
 

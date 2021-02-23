@@ -39,7 +39,7 @@ export default {
   emits: ["update:modelValue"],
   data() {
     return {
-        render_data: null
+      render_data: null,
     };
   },
   mounted() {

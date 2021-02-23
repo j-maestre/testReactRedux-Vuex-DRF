@@ -65,6 +65,27 @@ export default {
   emits: ["update:modelValue"],
   setup() {
     const picked = ref(new Date());
+
+    navigator.geolocation.getCurrentPosition(
+      getCoordinates,
+      errorGetCoordinates
+    );
+
+    function getCoordinates(position) {
+      //Closure para establecer las coordenadas actuales del usuario
+      let coords = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      };
+      console.log(position);
+      console.log(coords);
+    }
+
+    function errorGetCoordinates(error) {
+      alert("ALERTA! No se han podido obtener las coordenadas");
+      console.log(error);
+    }
+
     return {
       picked,
     };

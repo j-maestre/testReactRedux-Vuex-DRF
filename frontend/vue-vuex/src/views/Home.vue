@@ -92,7 +92,7 @@ export default {
         {
           id: 1,
           name: "Libros",
-          img: require("@/assets/categories/libro.jpg"),
+          img: "../assets/categories/libro.jpg",
         },
         {
           id: 2,

@@ -48,7 +48,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin
+    container_name: "Pgadmin_container"
     environment:
       PGADMIN_DEFAULT_EMAIL: "p@p.p"
       PGADMIN_DEFAULT_PASSWORD: "xemagordo"

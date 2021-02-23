@@ -1,4 +1,5 @@
 import { userApi } from "../../api";
+import { failed } from "../utils/failed";
 
 const state = {
   token: "",
@@ -23,7 +24,7 @@ const mutations = {
 const getters = {};
 
 const actions = {
-  async logout({ commit }) {
+  logout({ commit }) {
     commit("SET_TOKEN", "");
     commit("SET_USER", {});
 
@@ -60,21 +61,7 @@ const actions = {
         email: request.data.user.email,
       });
     } catch (error) {
-      let log = Object.entries(error.response.data.errors).map(
-        ([key, value]) => key + ": " + value
-      );
-
-      // ERROR
-      commit(
-        "SET_MSG",
-        {
-          type: false,
-          title: "Authentication failed",
-          details: "" + log,
-        },
-        { root: true }
-      );
-      return false;
+      return failed(commit, error, "Authentication failed");
     }
 
     commit("SET_LOADER", false);
@@ -105,21 +92,7 @@ const actions = {
         email: request.data.user.email,
       });
     } catch (error) {
-      let log = Object.entries(error.response.data.errors).map(
-        ([key, value]) => key + ": " + value
-      );
-
-      // ERROR
-      commit(
-        "SET_MSG",
-        {
-          type: false,
-          title: "Registration failed",
-          details: "" + log,
-        },
-        { root: true }
-      );
-      return false;
+      return failed(commit, error, "Registration failed");
     }
 
     commit("SET_LOADER", false);
@@ -127,14 +100,8 @@ const actions = {
     return request;
   },
   async checkout({ commit }) {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      return true;
-    }
-
     try {
-      var request = await userApi.checkout(token);
+      var request = await userApi.getProfile();
 
       commit("SET_TOKEN", request.data.user.token);
       commit("SET_USER", {
@@ -142,21 +109,23 @@ const actions = {
         email: request.data.user.email,
       });
     } catch (error) {
-      let log = Object.entries(error.response.data.errors).map(
-        ([key, value]) => key + ": " + value
-      );
+      return failed(commit, error, false);
+    }
+  },
 
-      // ERROR
-      commit(
-        "SET_MSG",
-        {
-          type: false,
-          title: "Registration failedd",
-          details: "" + log,
-        },
-        { root: true }
-      );
-      return false;
+  async getProfile({ commit }) {
+    try {
+      return await userApi.getProfile();
+    } catch (error) {
+      return failed(commit, error, "Registration failed");
+    }
+  },
+
+  async updateProfile({ commit }, form) {
+    try {
+      return await userApi.updateProfile(form);
+    } catch (error) {
+      return failed(commit, error, "Registration failed");
     }
   },
 };

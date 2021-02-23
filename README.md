@@ -18,6 +18,9 @@
   - id_profile - Serial (PK)
   - bio - Text
   - image - UrlField
+  - fistname - String
+  - surnames - String
+  - tel - String
 
 - travels
 
@@ -75,6 +78,9 @@
 6. Async y await con las llamadas api.
 7. Syntax watch, computed...
 8. Emit en autocomplete component.
+9. Middleware auth reutilizable a nivel de router, usando beforeEnter de Navigation Guards (vue3)
+10. Middleware noAuth para los usuarios registrados.
+11. Use onMounted async for requests in setup().
 
 ### Backend
 
