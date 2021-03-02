@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "ad86fb95-2ea2-4657-b0df-d0e21746078c",
+		"name": "DRF_React_Vue",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Forgetit",
+			"item": [
+				{
+					"name": "Travels",
+					"item": [
+						{
+							"name": "Valorations",
+							"item": [
+								{
+									"name": "Post valoration",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MywiZXhwIjoxNjE5MjY4MzYyfQ._kzBOLzOeftP2RStQCgfcyPADpX250eiVORczZsj4eM",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"valoration\":{\n        \"body\":\"OLE OLE LA VALORACION\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/travel/ontinyent-oy63hj/valoration/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"travel",
+												"ontinyent-oy63hj",
+												"valoration",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get travels",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjE5MjA5NDUwfQ.Jq6p_ztfU4lnWftdHy3DROoLHi_jiBUwTqdlrf0ASjw",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/api/travels",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"travels"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post travel",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjE4Njc4MjIzfQ.zr0AeaXnA4j8ks--tzC7b6qRrGldpt9dpA3bnnFmc48",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"travel\":{\n        \"numPassengers\":4,\n        \"date\": \"21 de abril\",\n        \"startTime\": \"11:00 am\",\n        \"finishTime\": \"12:00 am\",\n        \"city\": \"Ontinyent???????????\",\n        \"ubication\": \"calle ovidi montllor\",\n        \"postalCode\": 46870\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/travels/create/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"travels",
+										"create",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Travel",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/travel/ontinyent-oy63hj",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"travel",
+										"ontinyent-oy63hj"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete travel",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjE4Njc4MzEwfQ.6ArQUbMJEoJk_d-hIpfJzQ-JNK3tESPG1hgoWNHqOYM",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/api/travel/ontinyent-e4zp9l",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"travel",
+										"ontinyent-e4zp9l"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update travel",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjE4NjUwNzE1fQ.kM2bAcjzdWms2n0x0HfmLEpSiGq4sr5jtm83qIgUzT8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"travel\":{\n        \"numPassengers\":4,\n        \"date\": \"Updated\",\n        \"startTime\": \"Updated\",\n        \"finishTime\": \"Updated\",\n        \"city\": \"Ontinyent\",\n        \"ubication\": \"calle ovidi montllor\",\n        \"postalCode\": 46870\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/travel/ontinyent-6tn6ai",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"travel",
+										"ontinyent-6tn6ai"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\":{\n        \"email\":\"xema3@gmail.com\",\n        \"username\":\"xema3\",\n        \"password\":\"123456789\"\n    }    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\":{\n        \"email\":\"xema3@gmail.com\",\n        \"password\":\"123456789\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MywiZXhwIjoxNjE5MjY4MTUyfQ.qZZ3O5yKqlmRG0GWiGEHhRvC6WYYE4y2QbY3KusaJaI",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Get Categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/categories/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjE4MjIyOTkwfQ.m-Czjg8cu7mC5hsnZ97gA5mznZQlZbDdrLq4U-wRnac",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"category\":{\n        \"name\":\"prueb55\",\n        \"image\":\"ninguna\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/categories/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete category Admin",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MywiZXhwIjoxNjE5MjY4MTUyfQ.qZZ3O5yKqlmRG0GWiGEHhRvC6WYYE4y2QbY3KusaJaI",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/api/categories_Admin/4/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories_Admin",
+										"4",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

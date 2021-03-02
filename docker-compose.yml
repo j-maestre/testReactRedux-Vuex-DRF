@@ -37,12 +37,6 @@ services:
       - postgresql
     networks:
       - network
-
-      # sudo docker exec -it Django_container sh
-      # python manage.py startapp projectApp
-      # python3 manage.py makemigrations
-      # python3 manage.py migrate
-
   vue:
     container_name: "VueJS_container"
     build: ./frontend/vue-vuex/.
@@ -56,7 +50,9 @@ services:
       - servidor
     networks:
       - network
-
+    logging:
+      driver: none
+      
   pgadmin:
     image: dpage/pgadmin4
     container_name: "Pgadmin_container"
@@ -74,3 +70,10 @@ services:
 
 networks:
   network:
+
+
+
+      # sudo docker exec -it Django_container sh
+      # python manage.py startapp projectApp
+      # python3 manage.py makemigrations
+      # python3 manage.py migrate

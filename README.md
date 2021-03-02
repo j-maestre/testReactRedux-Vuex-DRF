@@ -88,14 +88,8 @@
 
 1. Relationship 1 to many profile -> travels
 2. DRF + Postman -> home, list, details, ....
-3. Register/Login/JWT/Header
-4. exceptions.py
-
-Improvements -> no cal tenir-les totes....
-
-- load imatges des de local
-
-- lazy-loading-in-vue
-
-- lifecycle-hooks Vue3
-  - beforeDestroy = onBeforeUnmount
+3. exceptions.py
+4. Delete category if isAdmin
+5. Delete travel if you are the author
+6. Relationships DRF: many to many travel comments
+7. Exceptions.py

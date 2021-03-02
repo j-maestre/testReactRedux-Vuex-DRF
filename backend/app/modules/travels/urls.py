@@ -8,6 +8,7 @@ from .views import (
     PostTravels,
     RetrieveTravel,
     ValorationsListCreateAPIView
+    # MyTravels
 )
 
 
@@ -15,6 +16,7 @@ from .views import (
 urlpatterns = [
     # url('travels/',ListTravels.as_view()),
     url(r'^travels/?$', ListTravels.as_view()),
+    # url(r'^travels/author?$', MyTravels.as_view()),
     url(r'^travels/create/?$', PostTravels.as_view()),
     url(r'^travel/(?P<travel_slug>[-\w]+)/?$',RetrieveTravel.as_view()),  #Retrieve and destroy
     url(r'^travel/(?P<travel_slug>[-\w]+)/valoration/?$',ValorationsListCreateAPIView.as_view()),
