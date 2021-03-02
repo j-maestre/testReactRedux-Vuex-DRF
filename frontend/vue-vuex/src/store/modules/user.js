@@ -108,6 +108,7 @@ const actions = {
         username: request.data.user.username,
         email: request.data.user.email,
       });
+      return true;
     } catch (error) {
       return failed(commit, error, false);
     }

@@ -13,6 +13,17 @@ services:
     networks:
       - network
 
+  images:
+    container_name: images_container
+    image: nginx:latest
+    ports:
+      - 1006:80
+    volumes:
+      - ./media/images.conf:/etc/nginx/conf.d/default.conf
+      - ./media/images/:/usr/share/nginx/html/images/
+    networks:
+      - network
+
   servidor:
     build: backend/.
     container_name: "Django_container"
@@ -58,6 +69,8 @@ services:
       - postgresql
     networks:
       - network
+    logging:
+      driver: none
 
 networks:
   network:

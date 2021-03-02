@@ -17,7 +17,7 @@
           :key="element.id"
           @click="onElement(element.id)"
         >
-          <img :src="element.img" alt="" />
+          <img :src="element.image" alt="" />
           <p>{{ element.name }}</p>
         </div>
       </div>
@@ -109,6 +109,7 @@ export default {
   height: calc(50vw - 40px);
   border-radius: 10%;
   object-fit: cover; /* or object-fit: contain; */
+  filter: brightness(70%);
 }
 
 .page .desktop {

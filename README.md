@@ -81,6 +81,8 @@
 9. Middleware auth reutilizable a nivel de router, usando beforeEnter de Navigation Guards (vue3)
 10. Middleware noAuth para los usuarios registrados.
 11. Use onMounted async for requests in setup().
+12. Servidor de imagenes.
+13. Maps de google utilizado en home.
 
 ### Backend
 
@@ -94,7 +96,6 @@ Improvements -> no cal tenir-les totes....
 - load imatges des de local
 
 - lazy-loading-in-vue
-
 
 - lifecycle-hooks Vue3
   - beforeDestroy = onBeforeUnmount

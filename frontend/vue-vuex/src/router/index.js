@@ -29,7 +29,7 @@ const routes = [
   {
     path: "/message",
     name: "Message",
-    component:  lazyLoad("Message"),
+    component: lazyLoad("Message"),
     beforeEnter: [auth],
   },
   {

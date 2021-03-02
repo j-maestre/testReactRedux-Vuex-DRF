@@ -29,16 +29,26 @@ import TravelsShipping from "../components/TravelsShipping";
 
 // Vue
 import { mapActions } from "vuex";
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
+
+// Api
+import { categoryApi } from "../api";
 
 export default {
   setup() {
     const store = useStore();
     const state = computed(() => store.state);
+    let categories = ref([]);
+
+    onMounted(async () => {
+      let response = await categoryApi.getCategories();
+      categories.value = response.data.categories;
+    });
 
     return {
       state,
+      categories,
     };
   },
   data() {
@@ -86,48 +96,6 @@ export default {
           origin_location: "Alcoy, Valencia",
           destination_location: "Ontinyent, Valencia",
           img: "https://thispersondoesnotexist.com/image",
-        },
-      ],
-      categories: [
-        {
-          id: 1,
-          name: "Libros",
-          img: "../assets/categories/libro.jpg",
-        },
-        {
-          id: 2,
-          name: "Tuppers",
-          img: require("@/assets/categories/libro.jpg"),
-        },
-        {
-          id: 3,
-          name: "Juguetes",
-          img: require("@/assets/categories/libro.jpg"),
-        },
-        {
-          id: 4,
-          name: "Tecnología",
-          img: require("@/assets/categories/libro.jpg"),
-        },
-        {
-          id: 5,
-          name: "Ropa",
-          img: require("@/assets/categories/libro.jpg"),
-        },
-        {
-          id: 6,
-          name: "Accesorios",
-          img: require("@/assets/categories/libro.jpg"),
-        },
-        {
-          id: 7,
-          name: "Electronica",
-          img: require("@/assets/categories/libro.jpg"),
-        },
-        {
-          id: 8,
-          name: "Coches",
-          img: require("@/assets/categories/libro.jpg"),
         },
       ],
     };
@@ -198,6 +166,7 @@ export default {
   height: calc(50vw - 40px);
   border-radius: 10%;
   object-fit: cover; /* or object-fit: contain; */
+  filter: brightness(70%);
 }
 
 .page .desktop {
